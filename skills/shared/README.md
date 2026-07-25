@@ -80,7 +80,7 @@ They SHALL NOT determine whether a vulnerability exists.
 |--------------|--------------|
 | SQL Injection | HTTP Client |
 | XSS | Browser |
-| TLS Analysis | Certificate Parser |
+| TLS Analysis | TLS Client |
 | GraphQL | JSON Parser |
 | JWT | JWT Decoder |
 | DNS | DNS Resolver |

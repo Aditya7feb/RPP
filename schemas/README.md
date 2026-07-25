@@ -200,6 +200,78 @@ Defines
 
 ---
 
+## certificate.md
+
+Defines
+
+- Parsed X.509 certificate metadata
+- Subject and issuer identity
+- Validity period
+- Public key and signature details
+- Certificate evidence references
+
+---
+
+## certificate-chain.md
+
+Defines
+
+- Ordered certificate chains
+- Leaf and issuer relationships
+- Trust anchor references
+- Chain completeness
+- Certificate evidence references
+
+---
+
+## tls-connection.md
+
+Defines
+
+- TLS connection lifecycle
+- Target transport metadata
+- Handshake references
+- Session references
+- Validation and evidence references
+
+---
+
+## tls-handshake.md
+
+Defines
+
+- Negotiated TLS protocol version
+- Cipher suite
+- ALPN protocol
+- SNI usage
+- Handshake timing and evidence
+
+---
+
+## tls-session.md
+
+Defines
+
+- TLS session identity
+- Session reuse status
+- Resumption metadata
+- Session isolation scope
+- Expiration and evidence references
+
+---
+
+## tls-validation-result.md
+
+Defines
+
+- Certificate validation status
+- Hostname validation status
+- Trust-chain evaluation
+- Revocation result
+- Validation reasons and evidence
+
+---
+
 ## technology.md
 
 Defines
