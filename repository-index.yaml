@@ -203,28 +203,36 @@ packages:
   authentication:
 
     sessions:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     jwt:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     oauth2:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     oidc:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     saml:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     api-keys:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     csrf:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     mtls:
-      status: planned
+      status: completed
+      version: 1.0.0
 
 ################################################################################
 # Web Security
@@ -269,7 +277,8 @@ packages:
       status: planned
 
     clickjacking:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     deserialization:
       status: planned
@@ -613,16 +622,77 @@ dependencies:
   browser:
     - http-client
 
-  recon:
+  sessions:
     - http-client
-    - dns-client
+    - policy-engine
+    - evidence
 
-  fingerprinting:
+  api-keys:
     - http-client
+    - policy-engine
+    - evidence
+
+  csrf:
+    - http-client
+    - policy-engine
+    - evidence
+
+  jwt:
+    - http-client
+    - policy-engine
+    - evidence
+
+  mtls:
     - tls-client
-
-  content-discovery:
     - http-client
+    - policy-engine
+    - evidence
+
+  oauth2:
+    - http-client
+    - policy-engine
+    - evidence
+
+  oidc:
+    - http-client
+    - policy-engine
+    - evidence
+
+  saml:
+    - http-client
+    - policy-engine
+    - evidence
+
+  clickjacking:
+    - http-client
+    - policy-engine
+    - evidence
+
+################################################################################
+# Orchestration Relationships
+#
+# Composition edges describe skills that invoke other skills at runtime through
+# the workflow-runtime. They are documentation only and are intentionally kept
+# separate from the dependencies graph so the dependency graph remains acyclic.
+# A composition edge does not imply a build-time or package-level dependency.
+################################################################################
+
+composition:
+
+  recon:
+    orchestrates:
+      - dns-enumeration
+      - subdomain-discovery
+      - port-discovery
+      - tls-analysis
+      - content-discovery
+      - fingerprinting
+      - virtual-host-discovery
+      - api-discovery
+      - endpoint-enumeration
+      - asset-discovery
+    mechanism: workflow-runtime
+    consolidated_by: asset-discovery
 
 ################################################################################
 # Build Order
@@ -644,11 +714,11 @@ roadmap:
 
   phase-4:
     name: Authentication
-    status: planned
+    status: completed
 
   phase-5:
     name: Web Security
-    status: planned
+    status: ongoing
 
   phase-6:
     name: API Security
@@ -680,8 +750,8 @@ roadmap:
 
 metrics:
 
-  packages_completed: 43
-  packages_planned: 28
+  packages_completed: 52
+  packages_planned: 19
 
   schemas_completed: 35
   schemas_planned: 37

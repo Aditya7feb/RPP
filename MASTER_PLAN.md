@@ -278,11 +278,18 @@ Kubernetes Client
 
 Discovery Skills
 
-Recon
+Status: Completed. The Discovery layer SHALL comprise the eleven implemented
+skills below. Each skill consumes shared infrastructure and canonical schemas,
+consults the Policy Engine before every target-facing action, and produces
+canonical Assets, Asset Relationships, Observations, Evidence, Findings, and Risk.
 
-Port Discovery
+## Implemented
 
 DNS Enumeration
+
+Subdomain Discovery
+
+Port Discovery
 
 TLS Analysis
 
@@ -290,21 +297,35 @@ Content Discovery
 
 Technology Fingerprinting
 
-Directory Enumeration
-
 Virtual Host Discovery
-
-Asset Discovery
 
 API Discovery
 
-Subdomain Discovery
-
 Endpoint Enumeration
 
-Cloud Asset Discovery
+Asset Discovery
 
-Certificate Enumeration
+Recon
+
+---
+
+## Scope Decisions
+
+The following capabilities named in earlier planning were consolidated or
+deferred. These are scoping decisions only; no capability is lost.
+
+Directory Enumeration SHALL be provided by Content Discovery. Directory and path
+enumeration is one discovery vector among several that yield endpoint and
+web-application Assets, so it is delivered as a capability of Content Discovery
+rather than as a separate skill.
+
+Certificate Enumeration SHALL be provided by TLS Analysis. Certificate discovery
+and interpretation are inseparable from TLS posture analysis, so certificate
+Assets are produced by TLS Analysis rather than by a separate skill.
+
+Cloud Asset Discovery SHALL be deferred to Phase 7 (Cloud Security). Cloud asset
+enumeration depends on cloud-provider capabilities that belong to the Cloud tier,
+not to network-facing Discovery, and SHALL be defined there.
 
 ---
 
@@ -312,9 +333,22 @@ Certificate Enumeration
 
 Authentication Skills
 
+Status: Completed. The Authentication layer SHALL comprise the eight implemented
+skills below. Each skill consumes Discovery Assets and canonical schemas, consults
+the Policy Engine before every target-facing action, produces Observations,
+Evidence, Findings, and Risk, and never persists credentials or secrets.
+
+## Implemented
+
 Session Management
 
+API Keys
+
+CSRF
+
 JWT
+
+mTLS
 
 OAuth2
 
@@ -322,27 +356,28 @@ OIDC
 
 SAML
 
-API Keys
+---
 
-Basic Authentication
+## Scope Decisions
 
-Bearer Authentication
+The following capabilities named in earlier planning were consolidated or deferred.
+These are scoping decisions only; no capability is lost.
 
-Cookie Authentication
+Basic Authentication, Bearer Authentication, and Cookie Authentication SHALL be
+covered as authentication mechanisms within the Session Management and API Keys
+skills rather than as separate skills. These are credential-transport schemes whose
+weaknesses (cleartext transport, weak validation, insecure cookie attributes) are
+evaluated by the existing skills.
 
-mTLS
+Password Reset and Account Registration SHALL be deferred to the Web Security tier
+(Phase 5). These are application-workflow flows whose weaknesses are evaluated as
+business-logic and input-handling concerns rather than authentication-mechanism
+concerns.
 
-CSRF
-
-Password Reset
-
-Account Registration
-
-Authorization Models
-
-RBAC
-
-ABAC
+Authorization Models, including RBAC and ABAC, SHALL be deferred to a dedicated
+Authorization tier. Authorization decisions are distinct from authentication and are
+evaluated after identity is established; they SHALL be defined in that tier rather
+than in Authentication.
 
 ---
 

@@ -207,6 +207,28 @@ Scope.
 
 ---
 
+# Endpoint Asset Ownership
+
+The `endpoint` Asset type is produced by several Discovery skills, each from a
+distinct discovery vector. Responsibilities are delineated as follows:
+
+- [Content Discovery](../content-discovery/README.md) produces `endpoint` Assets
+  discovered through path and directory enumeration and same-scope link crawling.
+- [API Discovery](../api-discovery/README.md) produces `endpoint` Assets declared
+  by located API specifications and detected GraphQL schemas.
+- [Endpoint Enumeration](../endpoint-enumeration/README.md) produces or enriches
+  `endpoint` Assets from rendered pages, client-side scripts, and bounded
+  parameter mining.
+- [Asset Discovery](../asset-discovery/README.md) is the canonical authority for
+  consolidating and deduplicating `endpoint` Assets across all sources and
+  introduces no new `endpoint` Assets of its own.
+
+Each producing skill SHALL attach provenance to every `endpoint` Asset it emits.
+Asset Discovery SHALL be the single point at which duplicate `endpoint` Assets are
+merged.
+
+---
+
 # Produced Findings
 
 The skill MAY produce [Findings](../../../schemas/finding.md), each with
