@@ -96,6 +96,10 @@ The scope determines what may be tested.
 
 No agent SHALL execute work outside the defined scope.
 
+The canonical, implementation-independent representation of scope is defined by
+[scope.md](scope.md), which defines assessment scope independently from the
+Rules of Engagement.
+
 ---
 
 # Rules of Engagement
@@ -119,6 +123,12 @@ rules_of_engagement:
 ```
 
 These rules SHALL govern every agent decision.
+
+The canonical, implementation-independent representation of the Rules of
+Engagement is defined by [rules-of-engagement.md](rules-of-engagement.md), which
+defines permitted actions independently from [scope.md](scope.md). Both are
+consulted by the [Policy Engine](../skills/shared/policy-engine/README.md) before
+any action.
 
 ---
 
@@ -241,6 +251,11 @@ This inventory SHALL evolve during execution.
 ---
 
 # Asset Inventory
+
+The canonical representation of every discovered entity is defined by
+[asset.md](asset.md), and the connections between entities by
+[asset-relationship.md](asset-relationship.md). The block below is a summary
+view; discovered entities SHALL be represented as canonical Assets.
 
 ```yaml
 assets:

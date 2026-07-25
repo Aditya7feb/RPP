@@ -486,6 +486,21 @@ Backward compatibility SHOULD be maintained.
 
 ---
 
+# Canonical Pipeline
+
+Evidence is the second stage of the canonical assessment pipeline
+
+```
+Observation → Evidence → Analysis → Finding → Risk → Recommendation
+```
+
+Evidence is the immutable record derived from one or more
+[observations](observation.md). The raw, pre-interpretation signal is defined by
+[observation.md](observation.md); Evidence corroborates and preserves it,
+[findings](finding.md) interpret it, and [risk.md](risk.md) scores it.
+
+---
+
 # Success Criteria
 
 A compliant Evidence object provides a complete, immutable, and verifiable record of an observation collected during an assessment.

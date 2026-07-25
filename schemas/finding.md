@@ -319,6 +319,25 @@ business_risk:
 
 ---
 
+# Canonical Risk
+
+Risk is a first-class canonical object defined by [risk.md](risk.md). A Finding
+SHALL be scored by a [Risk](risk.md) object rather than embedding its own risk
+model. Severity and CVSS values referenced above align with the canonical
+severity scale defined in [risk.md](risk.md).
+
+The canonical assessment pipeline is
+
+```
+Observation → Evidence → Analysis → Finding → Risk → Recommendation
+```
+
+where [observation.md](observation.md) captures the raw signal,
+[evidence.md](evidence.md) records it immutably, this Finding interprets it, and
+[risk.md](risk.md) scores it.
+
+---
+
 # Remediation
 
 Each Finding SHALL include

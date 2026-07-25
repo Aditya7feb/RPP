@@ -90,6 +90,10 @@ packages:
       status: completed
       version: 1.0.0
 
+    policy-engine:
+      status: completed
+      version: 1.0.0
+
     websocket-client:
       status: completed
       version: 1.0.0
@@ -149,37 +153,48 @@ packages:
   discovery:
 
     recon:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     fingerprinting:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     content-discovery:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     port-discovery:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     dns-enumeration:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     tls-analysis:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     asset-discovery:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     endpoint-enumeration:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     api-discovery:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     subdomain-discovery:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     virtual-host-discovery:
-      status: planned
+      status: completed
+      version: 1.0.0
 
 ################################################################################
 # Authentication Skills
@@ -392,6 +407,12 @@ schemas:
     - cache-entry
     - log-event
     - workflow-definition
+    - asset
+    - asset-relationship
+    - scope
+    - rules-of-engagement
+    - observation
+    - risk
 
   planned:
 
@@ -521,6 +542,65 @@ dependencies:
     - rate-limiter
     - retry
 
+  policy-engine: []
+
+  dns-enumeration:
+    - dns-client
+    - policy-engine
+    - evidence
+
+  port-discovery:
+    - tcp-client
+    - udp-client
+    - policy-engine
+    - evidence
+
+  tls-analysis:
+    - tls-client
+    - policy-engine
+    - evidence
+
+  content-discovery:
+    - http-client
+    - policy-engine
+    - evidence
+
+  fingerprinting:
+    - http-client
+    - tls-client
+    - policy-engine
+    - evidence
+
+  subdomain-discovery:
+    - dns-client
+    - policy-engine
+    - evidence
+
+  virtual-host-discovery:
+    - http-client
+    - policy-engine
+    - evidence
+
+  api-discovery:
+    - http-client
+    - policy-engine
+    - evidence
+
+  endpoint-enumeration:
+    - http-client
+    - browser
+    - policy-engine
+    - evidence
+
+  asset-discovery:
+    - policy-engine
+    - evidence
+
+  recon:
+    - workflow-runtime
+    - policy-engine
+    - evidence
+
   tls-client:
     - dns-client
 
@@ -560,7 +640,7 @@ roadmap:
 
   phase-3:
     name: Discovery
-    status: planned
+    status: completed
 
   phase-4:
     name: Authentication
@@ -600,10 +680,10 @@ roadmap:
 
 metrics:
 
-  packages_completed: 31
-  packages_planned: 39
+  packages_completed: 43
+  packages_planned: 28
 
-  schemas_completed: 29
+  schemas_completed: 35
   schemas_planned: 37
 
   adr_required: true

@@ -186,6 +186,18 @@ Proxy
 
 Retry
 
+Scope
+
+Rules of Engagement
+
+Asset
+
+Asset Relationship
+
+Observation
+
+Risk
+
 ---
 
 # Phase 2
