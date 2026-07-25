@@ -1,0 +1,632 @@
+# =============================================================================
+# RPP Repository Index
+# =============================================================================
+#
+# Purpose:
+#   Machine-readable repository inventory used by AI agents, CI pipelines,
+#   documentation generators, and validation tools.
+#
+# This file SHOULD be updated whenever a package, schema, ADR, or document
+# is added, removed, or modified.
+#
+# =============================================================================
+
+repository:
+  name: Robust PenTest Platform
+  short_name: RPP
+  version: 1.0.0
+  status: active
+
+metadata:
+  documentation_first: true
+  implementation_independent: true
+  schema_first: true
+  tool_independent: true
+  language_agnostic: true
+
+standards:
+  documentation: markdown
+  terminology: RFC2119
+  architecture: layered
+  dependency_model: acyclic
+
+################################################################################
+# Package Status
+################################################################################
+
+packages:
+
+  shared:
+
+    dns-client:
+      status: completed
+      version: 1.0.0
+
+    authentication:
+      status: completed
+      version: 1.0.0
+
+    browser:
+      status: completed
+      version: 1.0.0
+
+    tls-client:
+      status: completed
+      version: 1.0.0
+
+    http-client:
+      status: completed
+      version: 1.0.0
+
+    proxy:
+      status: completed
+      version: 1.0.0
+
+    retry:
+      status: completed
+      version: 1.0.0
+
+    cache:
+      status: completed
+      version: 1.0.0
+
+    rate-limiter:
+      status: completed
+      version: 1.0.0
+
+    logging:
+      status: completed
+      version: 1.0.0
+
+    evidence:
+      status: completed
+      version: 1.0.0
+
+    reporting:
+      status: completed
+      version: 1.0.0
+
+    workflow-runtime:
+      status: completed
+      version: 1.0.0
+
+    websocket-client:
+      status: completed
+      version: 1.0.0
+
+    grpc-client:
+      status: completed
+      version: 1.0.0
+
+    tcp-client:
+      status: completed
+      version: 1.0.0
+
+    udp-client:
+      status: completed
+      version: 1.0.0
+
+    smtp-client:
+      status: completed
+      version: 1.0.0
+
+    ftp-client:
+      status: completed
+      version: 1.0.0
+
+    ssh-client:
+      status: completed
+      version: 1.0.0
+
+    database-client:
+      status: completed
+      version: 1.0.0
+
+    filesystem-client:
+      status: completed
+      version: 1.0.0
+
+    secrets-client:
+      status: completed
+      version: 1.0.0
+
+    queue-client:
+      status: completed
+      version: 1.0.0
+
+    cloud-storage-client:
+      status: completed
+      version: 1.0.0
+
+    kubernetes-client:
+      status: completed
+      version: 1.0.0
+
+################################################################################
+# Discovery Skills
+################################################################################
+
+  discovery:
+
+    recon:
+      status: planned
+
+    fingerprinting:
+      status: planned
+
+    content-discovery:
+      status: planned
+
+    port-discovery:
+      status: planned
+
+    dns-enumeration:
+      status: planned
+
+    tls-analysis:
+      status: planned
+
+    asset-discovery:
+      status: planned
+
+    endpoint-enumeration:
+      status: planned
+
+    api-discovery:
+      status: planned
+
+    subdomain-discovery:
+      status: planned
+
+    virtual-host-discovery:
+      status: planned
+
+################################################################################
+# Authentication Skills
+################################################################################
+
+  authentication:
+
+    sessions:
+      status: planned
+
+    jwt:
+      status: planned
+
+    oauth2:
+      status: planned
+
+    oidc:
+      status: planned
+
+    saml:
+      status: planned
+
+    api-keys:
+      status: planned
+
+    csrf:
+      status: planned
+
+    mtls:
+      status: planned
+
+################################################################################
+# Web Security
+################################################################################
+
+  web-security:
+
+    xss:
+      status: planned
+
+    sqli:
+      status: planned
+
+    ssrf:
+      status: planned
+
+    ssti:
+      status: planned
+
+    xxe:
+      status: planned
+
+    idor:
+      status: planned
+
+    open-redirect:
+      status: planned
+
+    command-injection:
+      status: planned
+
+    file-upload:
+      status: planned
+
+    path-traversal:
+      status: planned
+
+    cors:
+      status: planned
+
+    csp:
+      status: planned
+
+    clickjacking:
+      status: planned
+
+    deserialization:
+      status: planned
+
+    cache-poisoning:
+      status: planned
+
+################################################################################
+# API Security
+################################################################################
+
+  api-security:
+
+    rest:
+      status: planned
+
+    graphql:
+      status: planned
+
+    soap:
+      status: planned
+
+    grpc:
+      status: planned
+
+    websocket:
+      status: planned
+
+################################################################################
+# Cloud
+################################################################################
+
+  cloud:
+
+    aws:
+      status: planned
+
+    azure:
+      status: planned
+
+    gcp:
+      status: planned
+
+    kubernetes:
+      status: planned
+
+    docker:
+      status: planned
+
+    terraform:
+      status: planned
+
+################################################################################
+# Reporting
+################################################################################
+
+  reporting:
+
+    findings:
+      status: planned
+
+    evidence-bundles:
+      status: planned
+
+    executive-report:
+      status: planned
+
+    technical-report:
+      status: planned
+
+    cvss:
+      status: planned
+
+################################################################################
+# Agent Framework
+################################################################################
+
+  agents:
+
+    master-agent:
+      status: completed
+
+    planning:
+      status: completed
+
+    delegation:
+      status: completed
+
+    reasoning:
+      status: completed
+
+    approval:
+      status: completed
+
+    communication:
+      status: completed
+
+################################################################################
+# Canonical Schemas
+################################################################################
+
+schemas:
+
+  completed:
+
+    - assessment
+    - approval
+    - finding
+    - evidence
+    - report
+    - technology
+    - execution-plan
+    - execution-state
+    - agent-response
+
+    - tls-session
+    - tls-handshake
+    - tls-connection
+    - certificate
+    - certificate-chain
+    - tls-validation-result
+
+    - http-request
+    - http-response
+    - http-header
+    - http-cookie
+    - http-session
+    - http-transaction
+    - http-redirect
+    - http-timing
+
+    - retry-policy
+    - rate-limit-policy
+    - proxy-configuration
+    - cache-entry
+    - log-event
+    - workflow-definition
+
+  planned:
+
+    - browser-context
+    - browser-page
+    - browser-action
+
+    - dns-query
+    - dns-response
+    - dns-record
+
+    - payload
+
+    - artifact
+
+    - metrics
+
+################################################################################
+# Package Dependencies
+################################################################################
+
+dependencies:
+
+  dns-client: []
+
+  retry: []
+
+  rate-limiter: []
+
+  proxy:
+    - authentication
+
+  cache: []
+
+  logging: []
+
+  evidence: []
+
+  reporting:
+    - evidence
+
+  workflow-runtime:
+    - rate-limiter
+    - retry
+    - proxy
+
+  tcp-client:
+    - dns-client
+    - proxy
+    - rate-limiter
+    - retry
+
+  udp-client:
+    - dns-client
+    - rate-limiter
+    - retry
+
+  websocket-client:
+    - http-client
+    - tls-client
+    - proxy
+    - rate-limiter
+    - retry
+
+  grpc-client:
+    - http-client
+    - tls-client
+    - proxy
+    - rate-limiter
+    - retry
+
+  smtp-client:
+    - tcp-client
+    - tls-client
+    - authentication
+    - proxy
+    - rate-limiter
+    - retry
+
+  ftp-client:
+    - tcp-client
+    - tls-client
+    - authentication
+    - proxy
+    - rate-limiter
+    - retry
+
+  ssh-client:
+    - tcp-client
+    - authentication
+    - proxy
+    - rate-limiter
+    - retry
+
+  database-client:
+    - tcp-client
+    - tls-client
+    - authentication
+    - proxy
+    - rate-limiter
+    - retry
+
+  filesystem-client:
+    - authentication
+    - rate-limiter
+    - retry
+
+  secrets-client:
+    - authentication
+
+  queue-client:
+    - authentication
+    - rate-limiter
+    - retry
+
+  cloud-storage-client:
+    - authentication
+    - secrets-client
+    - rate-limiter
+    - retry
+
+  kubernetes-client:
+    - http-client
+    - authentication
+    - secrets-client
+    - proxy
+    - rate-limiter
+    - retry
+
+  tls-client:
+    - dns-client
+
+  http-client:
+    - dns-client
+    - tls-client
+    - authentication
+    - retry
+
+  browser:
+    - http-client
+
+  recon:
+    - http-client
+    - dns-client
+
+  fingerprinting:
+    - http-client
+    - tls-client
+
+  content-discovery:
+    - http-client
+
+################################################################################
+# Build Order
+################################################################################
+
+roadmap:
+
+  phase-1:
+    name: Canonical Schemas
+    status: ongoing
+
+  phase-2:
+    name: Shared Infrastructure
+    status: completed
+
+  phase-3:
+    name: Discovery
+    status: planned
+
+  phase-4:
+    name: Authentication
+    status: planned
+
+  phase-5:
+    name: Web Security
+    status: planned
+
+  phase-6:
+    name: API Security
+    status: planned
+
+  phase-7:
+    name: Cloud Security
+    status: planned
+
+  phase-8:
+    name: Active Testing
+    status: planned
+
+  phase-9:
+    name: Evidence
+    status: planned
+
+  phase-10:
+    name: Reporting
+    status: planned
+
+  phase-11:
+    name: Master Agent
+    status: ongoing
+
+################################################################################
+# Repository Metrics
+################################################################################
+
+metrics:
+
+  packages_completed: 31
+  packages_planned: 39
+
+  schemas_completed: 29
+  schemas_planned: 37
+
+  adr_required: true
+  examples_required: true
+  implementation_code: false
+
+################################################################################
+# Agent Instructions
+################################################################################
+
+agent:
+
+  update_index_after_generation: true
+  update_dependencies: true
+  validate_cross_references: true
+  detect_orphan_documents: true
+  detect_duplicate_schemas: true
+  maintain_acyclic_dependencies: true
+  require_examples: true
+  require_adr: true
+  require_execution_model: true
+  require_error_model: true
+
+################################################################################
+# End of File
+################################################################################

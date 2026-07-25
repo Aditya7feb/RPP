@@ -272,6 +272,102 @@ Defines
 
 ---
 
+## http-request.md
+
+Defines
+
+- Outbound HTTP request
+- Method, URL, and HTTP version
+- Headers, query, cookies, and body
+- Authentication and execution options
+- Request evidence references
+
+---
+
+## http-response.md
+
+Defines
+
+- Normalized HTTP response
+- Status, headers, and cookies
+- Body, MIME type, and encoding
+- Redirect, TLS, and timing references
+- Response evidence references
+
+---
+
+## http-header.md
+
+Defines
+
+- Single HTTP header field
+- Name, value, and normalization
+- Direction and ordering
+- Multi-value handling
+- Sensitivity and redaction
+
+---
+
+## http-cookie.md
+
+Defines
+
+- Single HTTP cookie
+- Name, value, and scope attributes
+- Expiry and persistence
+- Security attributes
+- Cookie evidence references
+
+---
+
+## http-session.md
+
+Defines
+
+- HTTP session state
+- Cookie store and authentication
+- Connection reuse and isolation
+- Session lifecycle
+- Session evidence references
+
+---
+
+## http-transaction.md
+
+Defines
+
+- Complete HTTP exchange
+- Request and response linkage
+- Redirect, timing, and TLS references
+- Outcome and metrics
+- Transaction evidence references
+
+---
+
+## http-redirect.md
+
+Defines
+
+- HTTP redirect chain
+- Ordered hops and status codes
+- Method changes
+- Loop detection and termination
+- Redirect evidence references
+
+---
+
+## http-timing.md
+
+Defines
+
+- HTTP timing metrics
+- Per-phase durations
+- Total duration
+- Retry timing
+- Timing evidence references
+
+---
+
 ## technology.md
 
 Defines

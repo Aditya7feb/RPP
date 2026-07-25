@@ -416,6 +416,8 @@ This shared skill SHOULD include
 - execution.md
 - error-model.md
 - examples.md
+- transport.md
+- adr/ADR-001-transport-abstraction.md
 
 ---
 
@@ -442,6 +444,59 @@ Implementations SHOULD NOT
 - Modify assessment scope
 - Perform planning decisions
 - Embed tool-specific assumptions
+
+---
+
+# Related Shared Packages
+
+The HTTP Client integrates with the following shared packages.
+
+- [TLS Client](../tls-client/README.md)
+- [DNS Client](../dns-client/README.md)
+- [Authentication](../authentication/README.md)
+- [Browser](../browser/README.md)
+
+---
+
+# Canonical Schemas
+
+The HTTP Client produces and consumes the following canonical schemas.
+
+- [HTTP Request](../../../schemas/http-request.md)
+- [HTTP Response](../../../schemas/http-response.md)
+- [HTTP Header](../../../schemas/http-header.md)
+- [HTTP Cookie](../../../schemas/http-cookie.md)
+- [HTTP Session](../../../schemas/http-session.md)
+- [HTTP Transaction](../../../schemas/http-transaction.md)
+- [HTTP Redirect](../../../schemas/http-redirect.md)
+- [HTTP Timing](../../../schemas/http-timing.md)
+- [Evidence](../../../schemas/evidence.md)
+- [TLS Connection](../../../schemas/tls-connection.md)
+
+---
+
+# Architecture Decisions
+
+- [ADR-001 — HTTP Transport Abstraction](adr/ADR-001-transport-abstraction.md)
+
+---
+
+# Package Contents
+
+```
+skills/shared/http-client/
+
+├── README.md
+├── capabilities.md
+├── interface.md
+├── configuration.md
+├── execution.md
+├── error-model.md
+├── examples.md
+├── transport.md
+└── adr/
+    └── ADR-001-transport-abstraction.md
+```
 
 ---
 

@@ -1,0 +1,400 @@
+# =============================================================================
+# RPP Repository Manifest
+# =============================================================================
+#
+# Purpose:
+# Defines the governance, standards, architectural rules, and quality gates
+# for the Robust PenTest Platform (RPP).
+#
+# AI coding agents MUST read this file before generating or modifying
+# repository content.
+#
+# =============================================================================
+
+repository:
+  name: Robust PenTest Platform
+  short_name: RPP
+  version: 1.0.0
+  maturity: architecture
+  documentation_first: true
+  implementation_code: false
+
+################################################################################
+# Vision
+################################################################################
+
+vision:
+  goal: >
+    Build the canonical documentation-first knowledge base for autonomous
+    penetration testing systems.
+
+  principles:
+    - Schema First
+    - Documentation First
+    - Tool Independent
+    - Implementation Independent
+    - Layered Architecture
+    - Reusable Components
+    - Observable Execution
+    - Deterministic Outputs
+    - Audit Friendly
+    - Extensible
+
+################################################################################
+# Documentation Standards
+################################################################################
+
+documentation:
+
+  format: markdown
+
+  terminology:
+    standard: RFC2119
+
+  requirements:
+
+    no_placeholders: true
+
+    no_todos: true
+
+    production_quality: true
+
+    examples_required: true
+
+    extension_points_required: true
+
+    versioning_required: true
+
+    cross_references_required: true
+
+################################################################################
+# Package Standards
+################################################################################
+
+package:
+
+  required_files:
+
+    - README.md
+
+    - capabilities.md
+
+    - interface.md
+
+    - configuration.md
+
+    - execution.md
+
+    - error-model.md
+
+    - examples.md
+
+  adr:
+
+    enabled: true
+
+    required_files:
+
+      - ADR-001.md
+
+################################################################################
+# Schema Standards
+################################################################################
+
+schema:
+
+  every_schema_must_define:
+
+    - Purpose
+
+    - Version
+
+    - Field Definitions
+
+    - Required Fields
+
+    - Validation Rules
+
+    - Relationships
+
+    - Extension Points
+
+    - Example Object
+
+    - Versioning Notes
+
+################################################################################
+# Repository Architecture
+################################################################################
+
+architecture:
+
+  model: layered
+
+  dependency_direction:
+
+    - Schemas
+
+    - Shared Infrastructure
+
+    - Discovery
+
+    - Authentication
+
+    - Web Security
+
+    - API Security
+
+    - Cloud
+
+    - Reporting
+
+    - Agents
+
+  rules:
+
+    no_cyclic_dependencies: true
+
+    shared_packages_reusable: true
+
+    schemas_are_canonical: true
+
+################################################################################
+# Shared Infrastructure Rules
+################################################################################
+
+shared_packages:
+
+  responsibilities:
+
+    - Stable Interfaces
+
+    - Canonical Schemas
+
+    - Execution Abstraction
+
+    - Evidence Generation
+
+    - Configuration Management
+
+    - Error Handling
+
+    - Lifecycle Management
+
+  prohibited:
+
+    - Vulnerability Detection
+
+    - Security Findings
+
+    - Risk Decisions
+
+    - Exploitation Logic
+
+################################################################################
+# Domain Skill Rules
+################################################################################
+
+domain_skills:
+
+  must:
+
+    - Use Shared Infrastructure
+
+    - Consume Canonical Schemas
+
+    - Generate Findings
+
+    - Generate Evidence References
+
+    - Remain Tool Independent
+
+  must_not:
+
+    - Call curl
+
+    - Call OpenSSL
+
+    - Call httpx
+
+    - Call requests
+
+    - Execute CLI Tools Directly
+
+    - Parse CLI Output
+
+################################################################################
+# Tool Adapter Rules
+################################################################################
+
+tool_adapters:
+
+  supported:
+
+    - Native Libraries
+
+    - Kali MCP
+
+    - Docker
+
+    - Browser Automation
+
+    - Cloud APIs
+
+  requirements:
+
+    implementation_hidden: true
+
+    deterministic_output: true
+
+    canonical_schema_output: true
+
+################################################################################
+# Evidence Rules
+################################################################################
+
+evidence:
+
+  every_execution_should_generate:
+
+    - Metadata
+
+    - Timestamps
+
+    - Inputs
+
+    - Outputs
+
+    - Metrics
+
+    - Artifacts
+
+    - Evidence References
+
+################################################################################
+# Naming Conventions
+################################################################################
+
+naming:
+
+  directories:
+
+    lowercase: true
+
+    separator: hyphen
+
+  files:
+
+    lowercase: true
+
+    separator: hyphen
+
+  schemas:
+
+    canonical: true
+
+################################################################################
+# Quality Gates
+################################################################################
+
+quality:
+
+  must_pass:
+
+    - Markdown Validation
+
+    - Link Validation
+
+    - Cross Reference Validation
+
+    - Dependency Validation
+
+    - Duplicate Detection
+
+    - Schema Consistency
+
+    - Architecture Compliance
+
+    - Package Completeness
+
+################################################################################
+# AI Agent Instructions
+################################################################################
+
+agent:
+
+  before_generation:
+
+    - Read repository-index.yaml
+
+    - Read neighboring packages
+
+    - Read related schemas
+
+    - Read ADRs
+
+  during_generation:
+
+    - Reuse Existing Schemas
+
+    - Avoid Duplication
+
+    - Preserve Layering
+
+    - Cross Reference Documents
+
+    - Maintain Consistent Terminology
+
+  after_generation:
+
+    - Update repository-index.yaml
+
+    - Update dependencies
+
+    - Update cross references
+
+    - Validate package completeness
+
+################################################################################
+# Repository Lifecycle
+################################################################################
+
+lifecycle:
+
+  package_states:
+
+    - planned
+
+    - drafting
+
+    - review
+
+    - completed
+
+    - deprecated
+
+################################################################################
+# Success Criteria
+################################################################################
+
+success:
+
+  repository_should_be:
+
+    - Self Consistent
+
+    - Implementation Independent
+
+    - Tool Independent
+
+    - Extensible
+
+    - Documentation First
+
+    - Suitable For Autonomous AI Agents
+
+    - Suitable For Human Contributors
+
+################################################################################
+# End of Manifest
+################################################################################
