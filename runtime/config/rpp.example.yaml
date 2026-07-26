@@ -1,0 +1,42 @@
+# RPP runtime configuration (Phase E) — single configuration location.
+#
+# This example contains NO secrets and NO target. The target is always supplied
+# at runtime by the operator and validated against scope and Rules of Engagement.
+#
+# Authentication credentials are referenced by environment-variable name only;
+# they are never stored here.
+
+mcp:
+  # Your local Kali MCP server endpoint. Left blank on purpose — set this to your
+  # server URL before running against a live server.
+  endpoint: ""
+  transport: streamable-http        # streamable-http | sse | stdio
+  timeout_seconds: 60
+  verify_tls: true
+  authentication:
+    type: none                      # none | bearer | header
+    header_name: Authorization
+    token_env: RPP_MCP_TOKEN        # env var that holds the token (never inline)
+    token_prefix: "Bearer "
+
+retry:
+  max_attempts: 3
+  backoff_seconds: 1.0
+  backoff_multiplier: 2.0
+  max_backoff_seconds: 30.0
+
+concurrency:
+  max_parallel_tasks: 4
+
+# Custom outbound HTTP headers. The X-RPP-* headers previously defined for the
+# platform are preserved and applied to every outbound MCP request. X-RPP-Assessment
+# and X-RPP-Trace are populated per-assessment / per-request at runtime.
+request_id_header: X-RPP-Request-ID
+custom_headers:
+  User-Agent: RPP
+  X-RPP-Assessment: ""
+  X-RPP-Trace: ""
+
+# When true, the platform plans and resolves tool invocations but contacts no
+# server and executes no tool. Keep this true until you are ready to run live.
+dry_run: true

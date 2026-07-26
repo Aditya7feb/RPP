@@ -1,0 +1,9 @@
+# Core runtime and the dry-run first example require only the Python standard
+# library. The following are OPTIONAL and only needed for live operation:
+#
+#   httpx>=0.27     # live Streamable HTTP / SSE MCP transport
+#   PyYAML>=6.0     # full YAML configuration (a minimal subset parser is built in)
+#   mcp>=1.0        # official MCP SDK (future transport backends)
+#
+# Install extras with, for example:
+#   pip install -e ".[http,yaml]"
