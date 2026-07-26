@@ -48,6 +48,50 @@ shared `evidence` infrastructure, not by the capability.
 
 ---
 
+# Ownership Lifecycle Diagram
+
+The following diagram illustrates the ownership transitions across the evidence lifecycle. Each
+band owns a distinct responsibility; ownership passes downward and never upward.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Active Testing                                              │
+│   Payloads · Executions · Observations · Transient Artifacts │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│ Evidence Tier                                               │
+│   Collection · Correlation                                  │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│ Shared Evidence Infrastructure                              │
+│   Packaging · Integrity · Promotion · Retention · Archival  │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│ Domain Security                                             │
+│   Findings · Risk                                           │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│ Reporting                                                   │
+│   consumes Findings · consumes Evidence                     │
+└─────────────────────────────────────────────────────────────┘
+```
+
+Active Testing produces transient artifacts and Observations; the Evidence tier **collects** and
+**correlates** them; the shared `evidence` infrastructure owns the durable lifecycle (packaging,
+integrity, promotion, retention, archival); Domain Security interprets Observations and Evidence
+into Findings and Risk; and Reporting consumes Findings and Evidence. The Evidence tier invokes the
+shared lifecycle but does not implement it, and it never produces Findings or classifies Risk.
+
+---
+
 # Ownership Boundaries
 
 The canonical ownership model is as follows.

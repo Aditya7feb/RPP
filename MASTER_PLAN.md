@@ -651,31 +651,47 @@ capabilities invoke.
 
 # Phase 10
 
-Reporting
+Reporting Capabilities
+
+Status: Completed. The Reporting layer SHALL comprise the five implemented capability packages
+below, introduced as a dedicated capability tier at `skills/reporting/`. These capabilities are
+**read-only** over their inputs: Findings, canonical Risk, and Evidence are immutable and are never
+created, modified, or replaced by Reporting. Canonical Risk is owned by Domain Security and remains
+authoritative. Output formats are serializations, not capabilities. The tier introduces no new
+canonical schemas.
+
+## Implemented
 
 Finding Correlation
 
-Risk Scoring
+Risk Analysis
 
-CVSS
+Finding Mapping
 
-OWASP Mapping
+Report Generation
 
-MITRE ATT&CK Mapping
+Evidence Bundle
 
-Executive Reports
+## Scope Decisions
 
-Technical Reports
+The following capabilities named in earlier planning were consolidated or renamed. These are
+scoping decisions only; no capability is lost.
 
-Evidence Bundles
+Risk Scoring SHALL be provided by the Risk Analysis capability. The name reflects that the
+capability performs normalization, aggregation, prioritization, and presentation analysis rather
+than owning Risk. CVSS SHALL be one analytical method within Risk Analysis. Domain Security retains
+ownership of canonical Risk, which is authoritative; where a calculated value differs, canonical
+Risk prevails.
 
-SARIF
+OWASP Mapping and MITRE ATT&CK Mapping SHALL be provided by the Finding Mapping capability. They are
+the same enrichment concern applied to two frameworks.
 
-JSON
+Executive Reports and Technical Reports SHALL be provided by the Report Generation capability as
+report types. SARIF, JSON, Markdown, and PDF SHALL be provided by Report Generation as output
+serializations through the shared `reporting` package; they are not separate capabilities.
 
-Markdown
-
-PDF
+Evidence Bundles SHALL be provided by the Evidence Bundle capability, which assembles referenced
+Evidence into a distributable bundle read-only.
 
 ---
 

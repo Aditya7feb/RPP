@@ -49,11 +49,33 @@ The Artifact Collection Capability SHALL NOT
 - Interpret collected content or produce Findings or Risk
 - Own durable persistence, integrity, or retention (that is the shared Evidence lifecycle)
 - Collect artifacts from unauthorized locations
+- Acquire certificates live from TLS or network interactions (that is TLS Analysis)
 - Invoke command-line tools or parse their output
 
 Filesystem access belongs to the shared Filesystem Client; interpretation belongs to Domain
 Security capabilities; the durable evidence lifecycle belongs to the shared Evidence
-infrastructure.
+infrastructure; live certificate acquisition belongs to TLS Analysis.
+
+---
+
+# Collection Scope
+
+The Artifact Collection Capability is intentionally limited to **filesystem-available artifacts**:
+files, locally available or exported certificates, and other artifacts already present at an
+authorized filesystem location. It reads these exclusively through the shared
+[Filesystem Client](../../shared/filesystem-client/README.md).
+
+The Artifact Collection Capability SHALL NOT perform **live certificate acquisition** from TLS or
+network interactions. Acquiring certificates directly from a live TLS handshake or network exchange
+is the responsibility of the [TLS Analysis](../../discovery/tls-analysis/README.md) discovery skill,
+which uses the shared [TLS Client](../../shared/tls-client/README.md) and produces certificate
+Assets and Evidence. Certificates obtained live by TLS Analysis MAY subsequently be collected by
+this capability from an authorized filesystem location as durable artifact evidence.
+
+This boundary removes ownership ambiguity: **live acquisition belongs to TLS Analysis; filesystem
+collection and durable artifact recording belong here.** Because collection is confined to the
+filesystem, this capability depends on the [Filesystem Client](../../shared/filesystem-client/README.md)
+and does not depend on the TLS or network transport clients.
 
 ---
 
