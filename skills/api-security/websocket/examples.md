@@ -18,47 +18,40 @@ Security Skill. Identifiers are stable and illustrative.
 ## Request
 
 ```yaml
-assess:
-  target: wss://api.example.com/socket
-  assets:
-    - asset-api-3101
-    - asset-endpoint-3102
-  allowed_origins_ref: origins-set-2301
-  scope_id: scope-2301
-  roe_id: roe-2301
-  options:
-    check_origin_validation: true
+target: wss://api.example.com/socket
+assets:
+  - asset-api-3101
+  - asset-endpoint-3102
+allowed_origins_ref: ws-allowed-origins
+scope_id: scope-example-2024
+roe_id: roe-example-2024
 ```
 
 ## Result
 
 ```yaml
-assess_result:
-  target: wss://api.example.com/socket
-  findings:
-    - finding-ws-4101
-  evidence_refs:
-    - evidence-ws-5101
-  decision_summary:
-    allow: 2
-    denied: 0
+findings:
+  - id: finding-ws-5001
+    title: WebSocket handshake accepts foreign Origin (CSWSH)
+    weakness: CWE-1385
+    owasp_api: API2:2023 - Broken Authentication
+    risk_ref: risk-ws-3001
+    evidence_refs:
+      - evidence-ws-7001
+observations:
+  - id: obs-ws-4001
+    kind: origin-validation-analysis
+evidence:
+  - id: evidence-ws-7001
+    observation_ref: obs-ws-4001
+status: completed
+metrics:
+  handshakes_tested: 4
+  findings: 1
 ```
 
-## Finding
-
-```yaml
-finding-ws-4101:
-  weakness: CWE-346
-  owasp_api: "API2:2023 - Broken Authentication"
-  title: WebSocket handshake accepts foreign Origin (CSWSH)
-  asset: asset-api-3101
-  risk:
-    severity: high
-  evidence:
-    - evidence-ws-5101
-  notes: >
-    Confirmed with a single controlled foreign Origin. No session data was read.
-```
+A single controlled foreign Origin is accepted at the handshake, confirming missing
+Origin validation (CWE-1385, a specialization of CWE-346). No session data is read.
 
 ---
 
@@ -67,43 +60,38 @@ finding-ws-4101:
 ## Request
 
 ```yaml
-assess:
-  target: wss://api.example.com/socket
-  assets:
-    - asset-endpoint-3102
-  scope_id: scope-2301
-  roe_id: roe-2301
-  options:
-    check_handshake_authentication: true
+target: wss://api.example.com/socket
+assets:
+  - asset-endpoint-3102
+scope_id: scope-example-2024
+roe_id: roe-example-2024
 ```
 
 ## Result
 
 ```yaml
-assess_result:
-  target: wss://api.example.com/socket
-  findings:
-    - finding-ws-4102
-  evidence_refs:
-    - evidence-ws-5102
-  decision_summary:
-    allow: 1
-    denied: 0
+findings:
+  - id: finding-ws-5002
+    title: WebSocket handshake accepted without authentication
+    weakness: CWE-306
+    owasp_api: API2:2023 - Broken Authentication
+    risk_ref: risk-ws-3002
+    evidence_refs:
+      - evidence-ws-7002
+observations:
+  - id: obs-ws-4002
+    kind: handshake-authentication-analysis
+evidence:
+  - id: evidence-ws-7002
+    observation_ref: obs-ws-4002
+status: completed
+metrics:
+  handshakes_tested: 4
+  findings: 1
 ```
 
-## Finding
-
-```yaml
-finding-ws-4102:
-  weakness: CWE-306
-  owasp_api: "API2:2023 - Broken Authentication"
-  title: WebSocket handshake accepted without authentication
-  asset: asset-endpoint-3102
-  risk:
-    severity: high
-  evidence:
-    - evidence-ws-5102
-```
+The handshake is accepted without valid credentials, confirming missing handshake
+authentication.
 
 ---
 
@@ -112,98 +100,101 @@ finding-ws-4102:
 ## Request
 
 ```yaml
-assess:
-  target: wss://api.example.com/socket
-  assets:
-    - asset-api-3101
-  identities_ref: identities-set-2301
-  scope_id: scope-2301
-  roe_id: roe-2301
-  options:
-    check_message_authorization: true
+target: wss://api.example.com/socket
+assets:
+  - asset-api-3101
+identities_ref: ws-test-identities
+scope_id: scope-example-2024
+roe_id: roe-example-2024
 ```
 
 ## Result
 
 ```yaml
-assess_result:
-  target: wss://api.example.com/socket
-  findings:
-    - finding-ws-4103
-  evidence_refs:
-    - evidence-ws-5103
-  decision_summary:
-    allow: 3
-    denied: 0
+findings:
+  - id: finding-ws-5003
+    title: Low-privilege identity receives messages for another principal
+    weakness: CWE-285
+    owasp_api: API1:2023 - Broken Object Level Authorization
+    risk_ref: risk-ws-3003
+    evidence_refs:
+      - evidence-ws-7003
+observations:
+  - id: obs-ws-4003
+    kind: message-authorization-analysis
+evidence:
+  - id: evidence-ws-7003
+    observation_ref: obs-ws-4003
+status: completed
+metrics:
+  messages_tested: 5
+  findings: 1
 ```
 
-## Finding
-
-```yaml
-finding-ws-4103:
-  weakness: CWE-285
-  owasp_api: "API1:2023 - Broken Object Level Authorization"
-  title: Low-privilege identity receives messages for another principal
-  asset: asset-api-3101
-  risk:
-    severity: high
-  evidence:
-    - evidence-ws-5103
-  notes: >
-    Confirmed with a single controlled subscription. No further data was
-    enumerated.
-```
+A single controlled subscription with the low-privilege identity receives another
+principal's messages, confirming missing message-level authorization. No further data
+is enumerated.
 
 ---
 
 # Example 4 — Cleartext Transport
 
+## Request
+
+```yaml
+target: ws://api.example.com/socket
+assets:
+  - asset-endpoint-3102
+scope_id: scope-example-2024
+roe_id: roe-example-2024
+```
+
 ## Result
 
 ```yaml
-assess_result:
-  target: ws://api.example.com/socket
-  findings:
-    - finding-ws-4104
-  evidence_refs:
-    - evidence-ws-5104
-  decision_summary:
-    allow: 1
-    denied: 0
+findings:
+  - id: finding-ws-5004
+    title: WebSocket connection established over cleartext transport
+    weakness: CWE-319
+    owasp_api: API8:2023 - Security Misconfiguration
+    risk_ref: risk-ws-3004
+    evidence_refs:
+      - evidence-ws-7004
+status: completed
+metrics:
+  handshakes_tested: 1
+  findings: 1
 ```
 
-## Finding
-
-```yaml
-finding-ws-4104:
-  weakness: CWE-319
-  owasp_api: "API8:2023 - Security Misconfiguration"
-  title: WebSocket connection established over cleartext transport
-  asset: asset-endpoint-3102
-  risk:
-    severity: medium
-  evidence:
-    - evidence-ws-5104
-```
+The connection is established over cleartext transport, indicating the API does not
+enforce a secure channel.
 
 ---
 
-# Example 5 — Deferred For Approval
+# Example 5 — Requires Approval
+
+## Request
+
+```yaml
+target: wss://api.example.com/socket
+assets:
+  - asset-api-3101
+identities_ref: ws-test-identities
+scope_id: scope-example-2024
+roe_id: roe-example-2024
+```
 
 ## Result
 
 ```yaml
-assess_result:
-  target: wss://api.example.com/socket
-  findings: []
-  evidence_refs:
-    - evidence-ws-5105
-  decision_summary:
-    allow: 0
-    awaiting_approval: 1
+findings: []
+status: awaiting_approval
+metrics:
+  approvals_requested: 1
 ```
 
-Message authorization testing required approval and was deferred rather than executed.
+The Rules of Engagement require approval before active message-level authorization
+testing; the skill defers until approval is granted.
 
 ---
 

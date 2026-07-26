@@ -84,7 +84,10 @@ using bounded probes.
 ## Field Authorization Analysis
 
 The skill SHALL determine whether field- and object-level authorization is enforced
-across identities.
+across identities. Field-level authorization and field-level data exposure are Broken
+Object Property Level Authorization (OWASP API3:2023) concerns, while object-level
+authorization is a Broken Object Level Authorization (OWASP API1:2023) concern; the
+skill evaluates both without expanding its capability scope.
 
 ---
 

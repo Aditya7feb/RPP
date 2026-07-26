@@ -39,8 +39,11 @@ Misconfiguration.
 # GRPC-2 — Transport Security Analysis
 
 The skill SHALL evaluate whether the gRPC channel enforces transport encryption. A
-channel that accepts cleartext transport SHALL be classified as CWE-319. General TLS
-posture is delegated to TLS Analysis.
+channel that accepts cleartext transport SHALL be classified as CWE-319. The boundary
+with TLS Analysis is precise: this skill owns transport enforcement — whether the API
+requires a secure channel and rejects cleartext — while TLS Analysis owns TLS
+configuration quality, certificate validation, protocol versions, and cipher strength.
+This skill SHALL NOT assess TLS configuration quality.
 
 ---
 

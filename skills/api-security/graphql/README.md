@@ -196,10 +196,16 @@ The skill primarily consumes Assets. It MAY enrich the `api`
 # Produced Findings
 
 These weaknesses align with the OWASP API Security Top 10 (2023), primarily API4
-(Unrestricted Resource Consumption), API1 (BOLA), API5 (BFLA), and API8 (Security
-Misconfiguration), and with the OWASP Top 10 (2021) categories A05:2021 – Security
-Misconfiguration and A01:2021 – Broken Access Control. These references are
-informational and do not change capability scope.
+(Unrestricted Resource Consumption), API1 (BOLA), API3 (Broken Object Property Level
+Authorization), API5 (BFLA), and API8 (Security Misconfiguration), and with the OWASP
+Top 10 (2021) categories A05:2021 – Security Misconfiguration and A01:2021 – Broken
+Access Control. These references are informational and do not change capability scope.
+
+Because GraphQL exposes data at field granularity, field-level authorization and
+field-level data exposure are Broken Object Property Level Authorization (API3:2023)
+concerns in addition to object-level authorization (API1:2023). The skill evaluates
+both object-level and field-level (property-level) authorization; it does not thereby
+expand its capability scope.
 
 The skill MAY produce [Findings](../../../schemas/finding.md), each with
 [Risk](../../../schemas/risk.md), for weaknesses such as
@@ -207,12 +213,29 @@ The skill MAY produce [Findings](../../../schemas/finding.md), each with
 - Introspection enabled in a production environment, disclosing the full schema
   (CWE-200)
 - Missing query depth or complexity limits enabling resource exhaustion (CWE-770)
-- Field- or object-level authorization not enforced across identities (CWE-285)
+- Object-level authorization not enforced across identities (CWE-285, API1:2023)
+- Field-level (property-level) authorization not enforced, exposing fields the caller
+  is not entitled to read (CWE-285, API3:2023)
 - Batching or alias-based query amplification without controls (CWE-770)
 - Verbose errors disclosing schema or implementation detail (CWE-209)
 
 Every Finding SHALL reference supporting [Evidence](../../../schemas/evidence.md)
 with only bounded, minimal confirmation recorded and sensitive content redacted.
+
+---
+
+# OWASP API Security Top 10 (2023) Coverage Boundaries
+
+The following OWASP API Security Top 10 (2023) categories are intentionally delegated
+or deferred rather than assessed by this skill; no capability is lost.
+
+- API6:2023 (Unrestricted Access to Sensitive Business Flows) SHALL be deferred to the
+  future Business Logic capability, whose evaluation depends on per-application
+  workflow modeling.
+- API9:2023 (Improper Inventory Management) SHALL be primarily owned by API Discovery
+  in the Discovery tier, which inventories `api` and `endpoint` Assets.
+- API10:2023 (Unsafe Consumption of APIs) SHALL be deferred to a future API Security
+  extension.
 
 ---
 

@@ -31,7 +31,9 @@ capability is scope-confined, policy-gated, evidence-backed, and tool independen
 The skill SHALL evaluate whether the WebSocket handshake validates the Origin header.
 A handshake accepted with an unexpected or foreign Origin indicates susceptibility to
 Cross-Site WebSocket Hijacking (CSWSH). The skill SHALL classify confirmed missing
-validation as CWE-346 and reference OWASP API2:2023 – Broken Authentication.
+validation as CWE-1385 (Missing Origin Validation in WebSockets), a specialization of
+the broader CWE-346 (Origin Validation Error), and reference OWASP API2:2023 – Broken
+Authentication.
 
 ---
 
@@ -55,8 +57,11 @@ Confirmation SHALL be minimal and SHALL NOT enumerate other principals' data.
 # WS-4 — Transport Security Analysis
 
 The skill SHALL evaluate whether the connection uses secure transport (`wss://`). A
-connection established over cleartext (`ws://`) SHALL be classified as CWE-319.
-General TLS posture is delegated to TLS Analysis.
+connection established over cleartext (`ws://`) SHALL be classified as CWE-319. The
+boundary with TLS Analysis is precise: this skill owns transport enforcement — whether
+the API requires a secure channel and rejects cleartext — while TLS Analysis owns TLS
+configuration quality, certificate validation, protocol versions, and cipher strength.
+This skill SHALL NOT assess TLS configuration quality.
 
 ---
 

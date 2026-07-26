@@ -59,7 +59,9 @@ Observation classified CWE-319. General TLS posture is delegated to TLS Analysis
 
 The skill SHALL perform bounded handshakes presenting controlled foreign Origin values
 and observe whether the server accepts them. Acceptance of an unexpected Origin SHALL
-be recorded as an Observation classified CWE-346 (Cross-Site WebSocket Hijacking).
+be recorded as an Observation classified CWE-1385 (Missing Origin Validation in
+WebSockets), a specialization of the broader CWE-346, indicating Cross-Site WebSocket
+Hijacking.
 
 ---
 

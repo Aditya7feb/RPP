@@ -61,6 +61,14 @@ Transport belongs to the shared WebSocket Client; discovery belongs to the Disco
 tier; general TLS posture belongs to TLS Analysis; generic injection belongs to Web
 Security skills.
 
+The authentication boundary is explicit. This skill verifies authentication
+*presence* and *enforcement* on the WebSocket surface — whether the handshake requires
+and enforces authentication — and it verifies authorization *behavior* across
+identities. The correctness of the underlying authentication mechanisms and protocols
+(OAuth2, OIDC, JWT, SAML, mTLS, Sessions, and API Keys) is owned by the Authentication
+tier, which SHALL evaluate protocol correctness. This skill SHALL NOT assess
+authentication-protocol correctness.
+
 ---
 
 # Design Principles
@@ -212,7 +220,7 @@ The skill MAY produce [Findings](../../../schemas/finding.md), each with
 [Risk](../../../schemas/risk.md), for weaknesses such as
 
 - Missing Origin validation on the handshake enabling Cross-Site WebSocket Hijacking
-  (CWE-346)
+  (CWE-1385, a specialization of CWE-346)
 - WebSocket handshake accepted without authentication (CWE-306)
 - Message-level authorization not enforced across identities (CWE-285)
 - WebSocket connection established over cleartext transport (CWE-319)
@@ -220,6 +228,21 @@ The skill MAY produce [Findings](../../../schemas/finding.md), each with
 
 Every Finding SHALL reference supporting [Evidence](../../../schemas/evidence.md)
 with only minimal controlled confirmation recorded and sensitive content redacted.
+
+---
+
+# OWASP API Security Top 10 (2023) Coverage Boundaries
+
+The following OWASP API Security Top 10 (2023) categories are intentionally delegated
+or deferred rather than assessed by this skill; no capability is lost.
+
+- API6:2023 (Unrestricted Access to Sensitive Business Flows) SHALL be deferred to the
+  future Business Logic capability, whose evaluation depends on per-application
+  workflow modeling.
+- API9:2023 (Improper Inventory Management) SHALL be primarily owned by API Discovery
+  in the Discovery tier, which inventories `api` and `endpoint` Assets.
+- API10:2023 (Unsafe Consumption of APIs) SHALL be deferred to a future API Security
+  extension.
 
 ---
 

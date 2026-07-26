@@ -220,6 +220,21 @@ with only minimal controlled confirmation recorded and sensitive content redacte
 
 ---
 
+# OWASP API Security Top 10 (2023) Coverage Boundaries
+
+The following OWASP API Security Top 10 (2023) categories are intentionally delegated
+or deferred rather than assessed by this skill; no capability is lost.
+
+- API6:2023 (Unrestricted Access to Sensitive Business Flows) SHALL be deferred to the
+  future Business Logic capability, whose evaluation depends on per-application
+  workflow modeling.
+- API9:2023 (Improper Inventory Management) SHALL be primarily owned by API Discovery
+  in the Discovery tier, which inventories `api` and `endpoint` Assets.
+- API10:2023 (Unsafe Consumption of APIs) SHALL be deferred to a future API Security
+  extension.
+
+---
+
 # Policy Enforcement
 
 The REST API Security Skill SHALL consult the
