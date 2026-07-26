@@ -31,7 +31,7 @@ roe_id: roe-example-2024
 findings:
   - id: finding-cp-5001
     title: Unkeyed header reflected into a cached response
-    weakness: CWE-444
+    weakness: web-cache-poisoning
     risk_ref: risk-cp-3001
     evidence_refs:
       - evidence-cp-7001
@@ -69,7 +69,7 @@ roe_id: roe-example-2024
 findings:
   - id: finding-cp-5002
     title: Security-relevant input omitted from cache key
-    weakness: CWE-444
+    weakness: web-cache-poisoning
     risk_ref: risk-cp-3002
     evidence_refs:
       - evidence-cp-7002

@@ -307,19 +307,24 @@ packages:
   api-security:
 
     rest:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     graphql:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     soap:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     grpc:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     websocket:
-      status: planned
+      status: completed
+      version: 1.0.0
 
 ################################################################################
 # Cloud
@@ -753,6 +758,31 @@ dependencies:
     - policy-engine
     - evidence
 
+  rest:
+    - http-client
+    - policy-engine
+    - evidence
+
+  graphql:
+    - http-client
+    - policy-engine
+    - evidence
+
+  soap:
+    - http-client
+    - policy-engine
+    - evidence
+
+  grpc:
+    - grpc-client
+    - policy-engine
+    - evidence
+
+  websocket:
+    - websocket-client
+    - policy-engine
+    - evidence
+
 ################################################################################
 # Orchestration Relationships
 #
@@ -807,7 +837,7 @@ roadmap:
 
   phase-6:
     name: API Security
-    status: planned
+    status: completed
 
   phase-7:
     name: Cloud Security
@@ -835,8 +865,8 @@ roadmap:
 
 metrics:
 
-  packages_completed: 66
-  packages_planned: 5
+  packages_completed: 71
+  packages_planned: 0
 
   schemas_completed: 35
   schemas_planned: 37

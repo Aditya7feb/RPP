@@ -454,27 +454,50 @@ front-end and back-end parsing-differential modeling defined at that time.
 
 # Phase 6
 
-API Security
+API Security Skills
+
+Status: Completed. The API Security layer SHALL comprise the five implemented skills
+below. Each skill consumes the `api`, `endpoint`, and `service` Discovery Assets and
+canonical schemas, consults the Policy Engine before every target-facing action,
+tests authorization with two authorized controlled identities using minimal reads,
+bounds resource-consumption probes to avoid denial of service, and produces
+Observations, Evidence, Findings, and Risk classified with canonical weakness
+identifiers and the OWASP API Security Top 10 (2023).
+
+## Implemented
 
 REST
 
-SOAP
-
 GraphQL
+
+SOAP
 
 gRPC
 
 WebSocket
 
-Async APIs
+## Scope Decisions
 
-OpenAPI
+The following capabilities named in earlier planning were consolidated or deferred.
+These are scoping decisions only; no capability is lost.
 
-Swagger
+OpenAPI and Swagger SHALL be provided by the API Discovery skill in the Discovery
+tier, which ingests API specification documents to inventory `api` and `endpoint`
+Assets. They are specification formats consumed as discovery input rather than
+independent API Security skills.
 
-Rate Limiting
+Rate Limiting SHALL be evaluated as Unrestricted Resource Consumption within each API
+Security skill, aligned to OWASP API4:2023. Each skill confirms missing consumption
+controls with bounded probes rather than delegating to a separate Rate Limiting
+skill.
 
-API Gateway
+API Gateway SHALL be treated as a deployment topology rather than a distinct skill.
+Gateway-fronted APIs are assessed through the same REST, GraphQL, SOAP, gRPC, and
+WebSocket skills against the exposed surface.
+
+Async APIs SHALL be deferred to a future API Security extension. Event-driven and
+message-broker protocols require broker-specific transport adapters and safe-probing
+strategies that SHALL be defined when that extension is introduced.
 
 ---
 

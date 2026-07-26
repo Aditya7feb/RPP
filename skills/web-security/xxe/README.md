@@ -192,6 +192,10 @@ The skill primarily consumes Assets. It SHALL NOT invent Asset types.
 
 # Produced Findings
 
+These weaknesses align with OWASP Top 10 (2021) category A05:2021 – Security
+Misconfiguration. This category reference is informational and does not change
+capability scope.
+
 The skill MAY produce [Findings](../../../schemas/finding.md), each with
 [Risk](../../../schemas/risk.md), for weaknesses such as
 

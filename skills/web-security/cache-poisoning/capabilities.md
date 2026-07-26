@@ -80,8 +80,10 @@ under a controlled cache key.
 
 ## Weakness Identification
 
-The skill SHALL identify cache poisoning weaknesses from observed behavior and classify
-them using canonical weakness identifiers such as CWE-444.
+The skill SHALL identify cache poisoning weaknesses from observed behavior and describe
+the class using accepted Web Cache Poisoning terminology, documenting applicable
+identifiers for contributing weaknesses — CWE-444 for HTTP request smuggling variants
+and CWE-113 for HTTP response splitting.
 
 ---
 

@@ -97,8 +97,10 @@ SHALL be recorded, and sensitive content SHALL be redacted.
 # Stage 6 — Analyze For Cache Poisoning Weaknesses
 
 The skill SHALL analyze the observations for web cache poisoning using deterministic
-criteria and classify them using canonical weakness identifiers such as CWE-444.
-Analysis SHALL be separate from observation.
+criteria, describing the class using accepted Web Cache Poisoning terminology and
+documenting applicable identifiers for contributing weaknesses — CWE-444 for HTTP
+request smuggling variants and CWE-113 for HTTP response splitting. Analysis SHALL be
+separate from observation.
 
 ---
 

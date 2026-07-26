@@ -14,7 +14,10 @@ unkeyed input within the Robust PenTest Platform (RPP).
 
 It examines whether unkeyed request inputs influence cached responses, reporting
 weaknesses where an attacker can cause a harmful response to be served to other users
-from the cache (CWE-444 and related web-cache-poisoning weaknesses).
+from the cache. Web Cache Poisoning is the accepted security term for this weakness
+class; no single CWE completely represents it, so applicable CWEs are documented for
+the contributing weaknesses (CWE-444 for HTTP request smuggling or inconsistent
+message interpretation variants, and CWE-113 for HTTP response splitting).
 
 The skill consumes the `web-application` and `endpoint`
 [Assets](../../../schemas/asset.md) produced by Discovery. It drives the
@@ -187,12 +190,23 @@ The skill primarily consumes Assets. It SHALL NOT invent Asset types.
 
 # Produced Findings
 
+Web Cache Poisoning is the accepted security term for this weakness class; no single
+CWE completely represents it. Applicable CWEs are documented for the individual
+contributing weaknesses: CWE-444 applies only to poisoning arising from HTTP request
+smuggling or inconsistent message interpretation, and CWE-113 applies to HTTP
+response splitting. These weaknesses align with OWASP Top 10 (2021) category A05:2021
+– Security Misconfiguration, with smuggling-derived variants relating to A04:2021 –
+Insecure Design. These references are informational and do not change capability
+scope.
+
 The skill MAY produce [Findings](../../../schemas/finding.md), each with
 [Risk](../../../schemas/risk.md), for weaknesses such as
 
-- Unkeyed input reflected into a cached response, enabling cache poisoning
+- Unkeyed input reflected into a cached response, enabling web cache poisoning
 - Cache keys that omit security-relevant request inputs
-- Response splitting or header-based cache manipulation (CWE-444)
+- HTTP response splitting (CWE-113) or header-based cache manipulation
+- Cache poisoning arising from HTTP request smuggling or inconsistent message
+  interpretation (CWE-444)
 - Cache-deception conditions serving one user's response to another
 
 Every Finding SHALL reference supporting [Evidence](../../../schemas/evidence.md)
@@ -259,7 +273,9 @@ The Web Cache Poisoning Skill SHALL
 - Never poison a cache entry that serves real users
 - Reference benign markers only
 - Produce no Finding without supporting Evidence
-- Classify weaknesses using canonical weakness identifiers such as CWE-444
+- Classify contributing weaknesses using applicable identifiers — CWE-444 for HTTP
+  request smuggling variants and CWE-113 for HTTP response splitting — and describe
+  the class using accepted Web Cache Poisoning terminology
 - Preserve auditability
 
 ---
