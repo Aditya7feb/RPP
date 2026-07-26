@@ -269,19 +269,45 @@ tool:
 
 # Validation
 
-Validation information
+Validation records how a Finding was confirmed and how another penetration tester can
+independently confirm it. Validation SHALL remain optional and SHALL reference canonical
+objects rather than duplicating them.
 
 ```yaml
-validated:
-
-validated_by:
-
-validated_at:
-
-approval_reference:
+validation:
+  validated:
+  validated_by:
+  validated_at:
+  approval_reference:
+  prerequisites:
+  validation_payloads:
+    - payload_id
+  execution_refs:
+    - execution_id
+  observation_refs:
+    - observation_id
+  evidence_refs:
+    - evidence_id
+  procedure:
+  expected_result:
+  cleanup:
 ```
 
-Validation SHALL remain optional.
+`validation_payloads` SHALL reference successful [Payload](payload.md) objects selected as the
+minimal proof for this Finding. Such a selected payload is a Validation Payload: a Finding-side
+role, not a payload lifecycle state. The referenced Payload SHALL NOT change state and SHALL NOT
+be duplicated here. `execution_refs`, `observation_refs`, and `evidence_refs` reference the
+corresponding execution identifiers, [Observations](observation.md), and
+[Evidence](evidence.md).
+
+`procedure` SHALL be minimal, ordered validation steps appropriate to the relevant protocol or
+control — such as replaying an HTTP request, GraphQL mutation, or WebSocket message; verifying
+a DNS interaction; validating IAM permissions; or confirming configuration, certificate, or
+security-header behavior. `expected_result` SHALL state what confirms the issue. `cleanup` SHALL
+describe any actions required to restore state.
+
+Validation SHALL reference payload, execution, Observation, and Evidence identifiers rather than
+embedding payload corpora or large requests. It SHALL remain optional.
 
 ---
 

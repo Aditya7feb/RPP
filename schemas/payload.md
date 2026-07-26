@@ -119,6 +119,25 @@ Policy Engine.
 
 ---
 
+# Lifecycle
+
+A Payload MAY contain
+
+```yaml
+lifecycle:
+  state: generated | executed | successful
+```
+
+`lifecycle.state` records the payload's execution history within the Active Testing tier.
+`generated` denotes a candidate payload; `executed` denotes a payload delivered to a target;
+`successful` denotes an executed payload that produced an interesting execution Observation. The
+lifecycle represents execution history only and SHALL NOT encode business usage. Selecting a
+successful payload as reproducible proof for a Finding is a Finding concern (see
+[Finding](finding.md)) that references the Payload without changing its state; the lifecycle
+SHALL NOT include a `validation` state.
+
+---
+
 # Required Fields
 
 A Payload SHALL define `payload_id`, `schema_version`, `classification.category`,
@@ -133,6 +152,7 @@ A Payload SHALL define `payload_id`, `schema_version`, `classification.category`
 - `content.value_ref` SHALL resolve to a stored value; it SHALL NOT be inlined for
   sensitive content.
 - Marker, out-of-band, and credential values SHALL be referenced, never inlined.
+- `lifecycle.state`, when present, SHALL be one of `generated`, `executed`, or `successful`.
 - Unknown optional fields SHALL be ignored for forward compatibility.
 
 ---
@@ -142,6 +162,9 @@ A Payload SHALL define `payload_id`, `schema_version`, `classification.category`
 - A Payload MAY be delivered by an active-testing capability that records
   [Observations](observation.md) and [Artifacts](artifact.md).
 - A Payload MAY derive from another Payload through `lineage`.
+- A successful Payload MAY be referenced by a [Finding](finding.md) Validation section as a
+  Validation Payload. The reference is held by the Finding; the Payload does not
+  reference the Finding and does not change state.
 - A Payload SHALL NOT reference [Findings](finding.md) or [Risk](risk.md); interpretation
   belongs to domain capabilities.
 
@@ -168,6 +191,8 @@ lineage:
 safety:
   non_destructive: true
   requires_approval: false
+lifecycle:
+  state: generated
 ```
 
 ---
