@@ -411,6 +411,36 @@ packages:
       version: 1.0.0
 
 ################################################################################
+# Evidence
+################################################################################
+
+  evidence-tier:
+
+    screenshot-capture:
+      status: completed
+      version: 1.0.0
+
+    http-archive:
+      status: completed
+      version: 1.0.0
+
+    network-trace:
+      status: completed
+      version: 1.0.0
+
+    artifact-collection:
+      status: completed
+      version: 1.0.0
+
+    log-collection:
+      status: completed
+      version: 1.0.0
+
+    timeline:
+      status: completed
+      version: 1.0.0
+
+################################################################################
 # Reporting
 ################################################################################
 
@@ -948,6 +978,34 @@ dependencies:
   traffic-comparison:
     - evidence
 
+  screenshot-capture:
+    - browser
+    - policy-engine
+    - evidence
+
+  http-archive:
+    - http-client
+    - proxy
+    - policy-engine
+    - evidence
+
+  network-trace:
+    - tcp-client
+    - udp-client
+    - policy-engine
+    - evidence
+
+  artifact-collection:
+    - filesystem-client
+    - evidence
+
+  log-collection:
+    - logging
+    - evidence
+
+  timeline:
+    - evidence
+
 ################################################################################
 # Orchestration Relationships
 #
@@ -1014,7 +1072,7 @@ roadmap:
 
   phase-9:
     name: Evidence
-    status: planned
+    status: completed
 
   phase-10:
     name: Reporting
@@ -1030,7 +1088,7 @@ roadmap:
 
 metrics:
 
-  packages_completed: 89
+  packages_completed: 95
   packages_planned: 0
 
   schemas_completed: 38

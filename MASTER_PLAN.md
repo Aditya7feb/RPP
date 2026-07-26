@@ -602,27 +602,50 @@ Comparison SHALL be provided by the correspondingly named capabilities.
 
 # Phase 9
 
-Evidence
+Evidence Capabilities
 
-Screenshot Collection
+Status: Completed. The Evidence layer SHALL comprise the six implemented capability packages
+below, introduced as a dedicated capability tier at `skills/evidence/`. These capabilities
+collect and correlate evidence; they are policy-gated for target-facing collection, remain
+implementation-independent, introduce no new canonical schemas, and produce no Findings or Risk.
+The durable evidence lifecycle — packaging, integrity, archival, retention, and promotion — is a
+set of lifecycle mechanics owned by the shared `evidence` infrastructure, which Evidence
+capabilities invoke but do not implement.
 
-HAR
+## Implemented
+
+Screenshot Capture
 
 HTTP Archive
 
 Network Trace
 
-Certificate Archive
+Artifact Collection
 
-Response Archive
-
-File Archive
-
-Logs
-
-Metrics
+Log Collection
 
 Timeline
+
+## Scope Decisions
+
+The following capabilities named in earlier planning were consolidated or deferred. These are
+scoping decisions only; no capability is lost.
+
+HAR, HTTP Archive, and Response Archive SHALL be provided by the HTTP Archive capability. HAR is a
+serialization of HTTP evidence; response archival is HTTP evidence. They are one capability, not
+three format packages.
+
+Certificate Archive and File Archive SHALL be provided by the Artifact Collection capability, which
+collects files, certificates, and other artifacts. They differ by artifact type, not by capability;
+archival itself is a shared Evidence lifecycle mechanic, so the capability is named for its
+responsibility, collection.
+
+Metrics SHALL remain the canonical `metrics` schema emitted across tiers rather than becoming an
+Evidence capability. A Metrics package would be a schema-only package.
+
+Evidence Packaging SHALL NOT be a capability. Packaging, integrity, archival, retention, and
+promotion are lifecycle mechanics owned by the shared `evidence` infrastructure, which Evidence
+capabilities invoke.
 
 ---
 
