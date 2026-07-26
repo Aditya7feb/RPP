@@ -385,51 +385,70 @@ than in Authentication.
 
 Web Security Skills
 
+Status: Completed. The Web Security layer SHALL comprise the fifteen implemented
+skills below. Each skill consumes Discovery Assets and canonical schemas, consults
+the Policy Engine before every target-facing action, confirms weaknesses with
+bounded non-destructive evidence, and produces Observations, Evidence, Findings, and
+Risk classified with canonical weakness identifiers.
+
+## Implemented
+
+Clickjacking
+
+Content Security Policy
+
+CORS
+
+Open Redirect
+
 XSS
 
 SQL Injection
 
-SSRF
+Command Injection
+
+Path Traversal
 
 SSTI
 
 XXE
 
+SSRF
+
 IDOR
-
-Open Redirect
-
-Path Traversal
-
-Command Injection
 
 File Upload
 
-Template Injection
-
-Race Conditions
-
-Business Logic
-
-Prototype Pollution
-
-HTTP Request Smuggling
-
 Deserialization
-
-CORS
-
-CSP
-
-Clickjacking
-
-Host Header Injection
 
 Cache Poisoning
 
-Session Fixation
+---
 
-Session Hijacking
+## Scope Decisions
+
+The following capabilities named in earlier planning were consolidated or deferred.
+These are scoping decisions only; no capability is lost.
+
+SSTI SHALL provide Template Injection; the two names denote the same server-side
+template injection capability, delivered by the SSTI skill.
+
+Session Fixation and Session Hijacking SHALL be provided by the Session Management
+skill in the Authentication tier, which evaluates session identifier rotation,
+binding, and invalidation.
+
+Race Conditions and Business Logic SHALL be deferred to a dedicated Business Logic
+capability. These are application-workflow concerns whose evaluation depends on
+per-application logic modeling rather than a single canonical weakness vector, and
+SHALL be defined when that capability is introduced.
+
+Prototype Pollution SHALL be deferred to a future Web Security extension. It is a
+JavaScript-runtime-specific weakness whose safe confirmation strategy will be defined
+when that extension is introduced.
+
+HTTP Request Smuggling and Host Header Injection SHALL be deferred to a future Web
+Security extension focused on request-parsing and routing weaknesses, which require
+front-end and back-end parsing-differential modeling defined at that time.
 
 ---
 

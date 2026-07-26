@@ -241,50 +241,64 @@ packages:
   web-security:
 
     xss:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     sqli:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     ssrf:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     ssti:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     xxe:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     idor:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     open-redirect:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     command-injection:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     file-upload:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     path-traversal:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     cors:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     csp:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     clickjacking:
       status: completed
       version: 1.0.0
 
     deserialization:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     cache-poisoning:
-      status: planned
+      status: completed
+      version: 1.0.0
 
 ################################################################################
 # API Security
@@ -668,6 +682,77 @@ dependencies:
     - policy-engine
     - evidence
 
+  csp:
+    - http-client
+    - policy-engine
+    - evidence
+
+  cors:
+    - http-client
+    - policy-engine
+    - evidence
+
+  open-redirect:
+    - http-client
+    - policy-engine
+    - evidence
+
+  xss:
+    - http-client
+    - browser
+    - policy-engine
+    - evidence
+
+  sqli:
+    - http-client
+    - policy-engine
+    - evidence
+
+  command-injection:
+    - http-client
+    - policy-engine
+    - evidence
+
+  path-traversal:
+    - http-client
+    - policy-engine
+    - evidence
+
+  ssti:
+    - http-client
+    - policy-engine
+    - evidence
+
+  xxe:
+    - http-client
+    - policy-engine
+    - evidence
+
+  ssrf:
+    - http-client
+    - policy-engine
+    - evidence
+
+  idor:
+    - http-client
+    - policy-engine
+    - evidence
+
+  file-upload:
+    - http-client
+    - policy-engine
+    - evidence
+
+  deserialization:
+    - http-client
+    - policy-engine
+    - evidence
+
+  cache-poisoning:
+    - http-client
+    - policy-engine
+    - evidence
+
 ################################################################################
 # Orchestration Relationships
 #
@@ -718,7 +803,7 @@ roadmap:
 
   phase-5:
     name: Web Security
-    status: ongoing
+    status: completed
 
   phase-6:
     name: API Security
@@ -750,8 +835,8 @@ roadmap:
 
 metrics:
 
-  packages_completed: 52
-  packages_planned: 19
+  packages_completed: 66
+  packages_planned: 5
 
   schemas_completed: 35
   schemas_planned: 37
