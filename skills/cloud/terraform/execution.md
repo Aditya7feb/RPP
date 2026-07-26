@@ -55,7 +55,7 @@ or contacted.
 # Stage 4 — Resource Configuration Analysis
 
 The skill SHALL interpret declared resource configuration and record insecure settings such
-as missing logging as Observations classified CWE-778 or CWE-16.
+as missing logging as Observations classified CWE-778 or CWE-1188.
 
 ---
 

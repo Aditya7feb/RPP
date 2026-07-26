@@ -64,7 +64,7 @@ encryption at rest. Confirmed weaknesses SHALL be classified as CWE-311.
 
 The skill SHALL interpret service configuration and defaults and identify insecure
 settings such as exposed management endpoints. Confirmed weaknesses SHALL be classified
-as CWE-16.
+as CWE-1188 (Insecure Default Initialization of Resource).
 
 ---
 

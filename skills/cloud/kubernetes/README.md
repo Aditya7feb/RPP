@@ -58,6 +58,12 @@ The Kubernetes Cloud Security Skill SHALL NOT
 Cluster transport belongs to the shared Kubernetes Client; container-engine assessment
 belongs to the Docker skill; application weaknesses belong to Web Security skills.
 
+The authentication boundary is explicit. Authentication is performed by the shared
+clients through the Authentication tier; this skill verifies security posture and
+authorization behavior, while the correctness of authentication mechanisms and protocols
+is owned by the Authentication tier. This skill SHALL NOT assess authentication-protocol
+correctness.
+
 ---
 
 # Design Principles

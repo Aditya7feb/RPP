@@ -36,7 +36,7 @@ findings:
   - id: finding-tf-5001
     title: Declared storage bucket permits public access
     weakness: CWE-284
-    benchmark: IaC security - no public storage
+    benchmark: CIS Foundations Benchmark - restrict public storage access
     asset: asset-repo-6501
     risk_ref: risk-tf-3001
     evidence_refs:
@@ -81,7 +81,7 @@ findings:
   - id: finding-tf-5002
     title: Declared volume does not enable encryption at rest
     weakness: CWE-311
-    benchmark: IaC security - encrypt storage at rest
+    benchmark: CIS Foundations Benchmark - encrypt data at rest
     asset: asset-repo-6501
     risk_ref: risk-tf-3002
     evidence_refs:
@@ -120,7 +120,7 @@ findings:
   - id: finding-tf-5003
     title: Hardcoded credential in configuration variable
     weakness: CWE-798
-    benchmark: IaC security - no hardcoded secrets
+    benchmark: Secrets management guidance - no hardcoded credentials
     asset: asset-repo-6501
     risk_ref: risk-tf-3003
     evidence_refs:

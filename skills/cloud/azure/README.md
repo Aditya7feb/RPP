@@ -60,6 +60,12 @@ Provider transport belongs to the shared Azure and Cloud Storage clients; cluste
 assessment belongs to the Kubernetes skill; application weaknesses belong to Web
 Security skills.
 
+The authentication boundary is explicit. Authentication is performed by the shared
+clients through the Authentication tier; this skill verifies security posture and
+authorization behavior, while the correctness of authentication mechanisms and protocols
+is owned by the Authentication tier. This skill SHALL NOT assess authentication-protocol
+correctness.
+
 ---
 
 # Design Principles
@@ -204,7 +210,7 @@ The skill MAY produce [Findings](../../../schemas/finding.md), each with
 - Over-permissive role assignment granting broad privileges (CWE-732)
 - Network security group permitting unrestricted ingress to sensitive ports (CWE-284)
 - Storage or disk without encryption at rest (CWE-311)
-- Insecure default such as an exposed management endpoint (CWE-16)
+- Insecure default such as an exposed management endpoint (CWE-1188)
 
 Every Finding SHALL reference supporting [Evidence](../../../schemas/evidence.md) with
 sensitive values redacted.

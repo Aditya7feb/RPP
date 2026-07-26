@@ -59,6 +59,12 @@ Provider transport belongs to the shared AWS and Cloud Storage clients; cluster
 assessment belongs to the Kubernetes skill; application weaknesses belong to Web
 Security skills.
 
+The authentication boundary is explicit. Authentication is performed by the shared
+clients through the Authentication tier; this skill verifies security posture and
+authorization behavior, while the correctness of authentication mechanisms and protocols
+is owned by the Authentication tier. This skill SHALL NOT assess authentication-protocol
+correctness.
+
 ---
 
 # Design Principles
@@ -202,7 +208,7 @@ The skill MAY produce [Findings](../../../schemas/finding.md), each with
 - Over-permissive IAM policy granting wildcard actions or resources (CWE-732)
 - Security group permitting unrestricted ingress to sensitive ports (CWE-284)
 - Legacy instance metadata service (IMDSv1) permitted, increasing SSRF exposure
-  (CWE-16)
+  (CWE-1188)
 - Storage or volume without encryption at rest (CWE-311)
 - Publicly shared machine image or snapshot (CWE-284)
 

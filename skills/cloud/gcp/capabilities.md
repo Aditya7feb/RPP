@@ -64,7 +64,8 @@ encryption assurances at rest. Confirmed weaknesses SHALL be classified as CWE-3
 
 The skill SHALL interpret service account, metadata-server, and other default
 configuration and identify insecure settings such as default service accounts with broad
-scopes. Confirmed weaknesses SHALL be classified as CWE-16.
+scopes. Confirmed weaknesses SHALL be classified as CWE-276 (Incorrect Default
+Permissions).
 
 ---
 

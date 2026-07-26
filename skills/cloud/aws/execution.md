@@ -78,7 +78,7 @@ encryption at rest as Observations classified CWE-311.
 # Stage 7 — Insecure-Default Analysis
 
 The skill SHALL interpret instance metadata service configuration and other defaults and
-record insecure settings, such as permitting IMDSv1, as Observations classified CWE-16.
+record insecure settings, such as permitting IMDSv1, as Observations classified CWE-1188.
 
 ---
 

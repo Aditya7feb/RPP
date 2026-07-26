@@ -64,7 +64,8 @@ missing encryption at rest. Confirmed weaknesses SHALL be classified as CWE-311.
 
 The skill SHALL interpret instance metadata service configuration and other defaults and
 identify insecure settings such as permitting the legacy instance metadata service
-(IMDSv1). Confirmed weaknesses SHALL be classified as CWE-16.
+(IMDSv1). Confirmed weaknesses SHALL be classified as CWE-1188 (Insecure Default
+Initialization of Resource).
 
 ---
 

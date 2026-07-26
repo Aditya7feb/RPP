@@ -555,25 +555,48 @@ provider clients. It is not a separate skill.
 
 # Phase 8
 
-Active Testing
+Active Testing Capabilities
+
+Status: Completed. Active Testing SHALL comprise the eight implemented capability packages
+below, introduced as a dedicated capability tier at `skills/active-testing/`. These packages
+are reusable security capabilities rather than transport or access clients; they remain
+implementation-independent, emit only the canonical `payload`, `artifact`, and `metrics`
+schemas alongside Observations, gate every target-facing action through the Policy Engine,
+and produce no Findings or Risk. Domain capabilities interpret their outputs into Findings
+and Risk.
+
+The canonical `payload`, `artifact`, and `metrics` schemas were authored to support this
+tier.
+
+## Implemented
 
 Payload Generation
 
-Fuzzing
+Parameter Mining
 
 Wordlists
 
 Mutation Engine
 
-Parameter Mining
+Fuzzing
 
-Input Generation
-
-Replay Engine
+Replay
 
 Traffic Recording
 
 Traffic Comparison
+
+## Scope Decisions
+
+The following capabilities named in earlier planning were consolidated or deferred. These
+are scoping decisions only; no capability is lost.
+
+Input Generation SHALL be provided by the Payload Generation capability, which composes
+inputs from templates, wordlist seeds, and mutation variants. The two names denote the same
+input-composition capability.
+
+Replay Engine SHALL be provided by the Replay capability, and Traffic Recording and Traffic
+Comparison SHALL be provided by the correspondingly named capabilities.
 
 ---
 

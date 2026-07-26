@@ -119,7 +119,7 @@ options:
 findings:
   - id: finding-gcp-5003
     title: Instance uses default service account with broad scopes
-    weakness: CWE-16
+    weakness: CWE-276
     benchmark: CIS GCP Foundations - restrict default service accounts
     asset: asset-cloud-6203
     risk_ref: risk-gcp-3003

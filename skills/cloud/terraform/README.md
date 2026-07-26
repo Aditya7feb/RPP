@@ -59,6 +59,12 @@ The Terraform Cloud Security Skill SHALL NOT
 File access belongs to the shared Filesystem Client; deployed-resource assessment belongs
 to the provider Cloud Security skills; application weaknesses belong to Web Security skills.
 
+The authentication boundary is explicit. Any authenticated access is performed by the
+shared Filesystem Client through the Authentication tier; this skill verifies declared
+security posture and authorization configuration, while the correctness of authentication
+mechanisms and protocols is owned by the Authentication tier. This skill SHALL NOT assess
+authentication-protocol correctness.
+
 ---
 
 # Design Principles
@@ -189,8 +195,9 @@ SHALL NOT invent Asset types.
 
 # Produced Findings
 
-These weaknesses align with recognized infrastructure-as-code and cloud security benchmarks
-and CWE. The references are informational and do not change capability scope.
+These weaknesses align with the applicable CIS Foundations Benchmark for the declared
+provider and general secure-configuration guidance, referenced by CWE. The references are
+informational and do not change capability scope.
 
 The skill MAY produce [Findings](../../../schemas/finding.md), each with
 [Risk](../../../schemas/risk.md), for weaknesses such as

@@ -30,7 +30,8 @@ capability is scope-confined, policy-gated, evidence-backed, and tool independen
 
 The skill SHALL interpret declared resource configuration and identify insecure settings
 such as missing logging or auditing. Confirmed weaknesses SHALL be classified as CWE-778 or
-CWE-16 and referenced to recognized infrastructure-as-code benchmarks.
+CWE-1188 and referenced to the applicable CIS Foundations Benchmark for the declared
+provider.
 
 ---
 

@@ -120,7 +120,7 @@ options:
 findings:
   - id: finding-aws-5003
     title: Instance permits legacy metadata service (IMDSv1)
-    weakness: CWE-16
+    weakness: CWE-1188
     benchmark: CIS AWS Foundations - IMDSv2 required
     asset: asset-cloud-6003
     risk_ref: risk-aws-3003

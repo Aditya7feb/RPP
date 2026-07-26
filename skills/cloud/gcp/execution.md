@@ -79,7 +79,7 @@ encryption assurances at rest as Observations classified CWE-311.
 # Stage 7 — Insecure-Default Analysis
 
 The skill SHALL interpret service account, metadata-server, and default configuration and
-record insecure settings as Observations classified CWE-16.
+record insecure settings as Observations classified CWE-276.
 
 ---
 

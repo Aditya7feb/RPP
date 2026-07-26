@@ -59,6 +59,12 @@ The GCP Cloud Security Skill SHALL NOT
 Provider transport belongs to the shared GCP and Cloud Storage clients; cluster assessment
 belongs to the Kubernetes skill; application weaknesses belong to Web Security skills.
 
+The authentication boundary is explicit. Authentication is performed by the shared
+clients through the Authentication tier; this skill verifies security posture and
+authorization behavior, while the correctness of authentication mechanisms and protocols
+is owned by the Authentication tier. This skill SHALL NOT assess authentication-protocol
+correctness.
+
 ---
 
 # Design Principles
@@ -201,7 +207,7 @@ The skill MAY produce [Findings](../../../schemas/finding.md), each with
 - Publicly accessible storage bucket or object, including `allUsers` bindings (CWE-284)
 - Over-permissive IAM binding granting primitive roles such as Owner or Editor (CWE-732)
 - Firewall rule permitting unrestricted ingress to sensitive ports (CWE-284)
-- Default service account with broad scopes, or exposed metadata server (CWE-16)
+- Default service account with broad scopes, or exposed metadata server (CWE-276)
 - Storage or disk without customer-managed or default encryption assurances (CWE-311)
 
 Every Finding SHALL reference supporting [Evidence](../../../schemas/evidence.md) with

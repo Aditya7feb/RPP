@@ -373,6 +373,44 @@ packages:
       version: 1.0.0
 
 ################################################################################
+# Active Testing
+################################################################################
+
+  active-testing:
+
+    wordlists:
+      status: completed
+      version: 1.0.0
+
+    mutation-engine:
+      status: completed
+      version: 1.0.0
+
+    payload-generation:
+      status: completed
+      version: 1.0.0
+
+    parameter-mining:
+      status: completed
+      version: 1.0.0
+
+    fuzzing:
+      status: completed
+      version: 1.0.0
+
+    replay:
+      status: completed
+      version: 1.0.0
+
+    traffic-recording:
+      status: completed
+      version: 1.0.0
+
+    traffic-comparison:
+      status: completed
+      version: 1.0.0
+
+################################################################################
 # Reporting
 ################################################################################
 
@@ -463,6 +501,9 @@ schemas:
     - rules-of-engagement
     - observation
     - risk
+    - payload
+    - artifact
+    - metrics
 
   planned:
 
@@ -473,12 +514,6 @@ schemas:
     - dns-query
     - dns-response
     - dns-record
-
-    - payload
-
-    - artifact
-
-    - metrics
 
 ################################################################################
 # Package Dependencies
@@ -878,6 +913,41 @@ dependencies:
     - policy-engine
     - evidence
 
+  wordlists: []
+
+  mutation-engine: []
+
+  payload-generation:
+    - wordlists
+    - mutation-engine
+
+  parameter-mining:
+    - http-client
+    - wordlists
+    - policy-engine
+    - evidence
+
+  fuzzing:
+    - http-client
+    - payload-generation
+    - mutation-engine
+    - policy-engine
+    - evidence
+
+  replay:
+    - http-client
+    - traffic-recording
+    - policy-engine
+    - evidence
+
+  traffic-recording:
+    - proxy
+    - policy-engine
+    - evidence
+
+  traffic-comparison:
+    - evidence
+
 ################################################################################
 # Orchestration Relationships
 #
@@ -940,7 +1010,7 @@ roadmap:
 
   phase-8:
     name: Active Testing
-    status: planned
+    status: completed
 
   phase-9:
     name: Evidence
@@ -960,11 +1030,11 @@ roadmap:
 
 metrics:
 
-  packages_completed: 81
+  packages_completed: 89
   packages_planned: 0
 
-  schemas_completed: 35
-  schemas_planned: 37
+  schemas_completed: 38
+  schemas_planned: 34
 
   adr_required: true
   examples_required: true
