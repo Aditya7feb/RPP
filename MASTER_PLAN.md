@@ -697,31 +697,49 @@ Evidence into a distributable bundle read-only.
 
 # Phase 11
 
-Master Agent
+Master Agent Integration & Ownership Correction
 
-Planning
+Status: Completed. Phase 11 integrates the orchestration layer with the canonical architecture
+rather than adding new capabilities. The Master Agent is defined as a pure orchestrator, normalized
+into the canonical package structure at `agents/master/`, and the legacy agent taxonomy is replaced
+by capability-oriented orchestration. No new schemas were introduced.
 
-Reasoning
+## Implemented
 
-Delegation
+The Master Agent (`agents/master/`) SHALL be a canonical package comprising README, capabilities,
+interface, configuration, execution, error-model, examples, and ADR-001. It owns planning,
+reasoning, delegation, workflow coordination, approval gating, execution tracking, and completion,
+and it owns no Findings, Evidence, Risk, or Reporting logic.
 
-Scheduling
+Orchestration SHALL target eight specialist tier agents, one per canonical capability tier:
+Discovery, Authentication, Web Security, API Security, Cloud, Active Testing, Evidence, and
+Reporting. Each specialist tier agent coordinates the capability packages within its tier; packages
+remain implementation details inside each tier.
 
-Approval
+The Master Agent SHALL bind to the existing canonical schemas — assessment, scope,
+rules-of-engagement, execution-plan, execution-state, task, agent-response, approval, and
+workflow-definition — and the `task` schema SHALL be registered in the repository index.
 
-Execution Policies
+The Master Agent SHALL invoke the Reporting pipeline in order — finding-correlation, risk-analysis,
+report-generation, evidence-bundle — consuming outputs by reference only. Confidence SHALL reference
+the canonical `skills/core/confidence-model`. Memory SHALL support orchestration only; capabilities
+remain deterministic and never depend on orchestration memory.
 
-Confidence Models
+## Scope Decisions
 
-Decision Trees
+Planning, Reasoning, Delegation, Scheduling, Approval, Execution Policies, Communication, Memory, and
+Context Management SHALL be orchestration concerns consolidated into the Master Agent canonical
+package rather than separate agent folders.
 
-Communication
+Confidence Models SHALL NOT be redefined in the agent layer; the Master Agent references the
+canonical Core confidence model, removing the prior duplication.
 
-Knowledge Retrieval
+Knowledge Retrieval SHALL be treated as orchestration memory and context propagation, documented in
+the Master Agent execution model, and is not a capability tier.
 
-Memory
-
-Context Management
+The legacy taxonomy — recon, scanners, exploit, execution, knowledge — SHALL be replaced by the
+capability-oriented taxonomy. Migration SHALL proceed in two stages: first replace the taxonomy and
+update all references, then remove the obsolete stub folders once no references remain.
 
 ---
 

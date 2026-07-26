@@ -361,7 +361,7 @@ confidence_sources:
 Confidence SHALL align with
 
 ```
-agents/master/confidence-model.md
+skills/core/confidence-model.md
 ```
 
 ---

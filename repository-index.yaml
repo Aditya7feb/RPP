@@ -474,21 +474,39 @@ packages:
 
     master-agent:
       status: completed
+      version: 2.0.0
 
-    planning:
+    discovery-agent:
       status: completed
+      version: 1.0.0
 
-    delegation:
+    authentication-agent:
       status: completed
+      version: 1.0.0
 
-    reasoning:
+    web-security-agent:
       status: completed
+      version: 1.0.0
 
-    approval:
+    api-security-agent:
       status: completed
+      version: 1.0.0
 
-    communication:
+    cloud-agent:
       status: completed
+      version: 1.0.0
+
+    active-testing-agent:
+      status: completed
+      version: 1.0.0
+
+    evidence-agent:
+      status: completed
+      version: 1.0.0
+
+    reporting-agent:
+      status: completed
+      version: 1.0.0
 
 ################################################################################
 # Canonical Schemas
@@ -507,6 +525,7 @@ schemas:
     - execution-plan
     - execution-state
     - agent-response
+    - task
 
     - tls-session
     - tls-handshake
@@ -1027,6 +1046,16 @@ dependencies:
     - reporting
     - evidence
 
+  master-agent:
+    - discovery-agent
+    - authentication-agent
+    - web-security-agent
+    - api-security-agent
+    - cloud-agent
+    - active-testing-agent
+    - evidence-agent
+    - reporting-agent
+
 ################################################################################
 # Orchestration Relationships
 #
@@ -1101,7 +1130,7 @@ roadmap:
 
   phase-11:
     name: Master Agent
-    status: ongoing
+    status: completed
 
 ################################################################################
 # Repository Metrics
@@ -1112,7 +1141,7 @@ metrics:
   packages_completed: 100
   packages_planned: 0
 
-  schemas_completed: 38
+  schemas_completed: 39
   schemas_planned: 34
 
   adr_required: true

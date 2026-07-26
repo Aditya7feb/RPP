@@ -8,408 +8,141 @@
 
 # Purpose
 
-This document provides reference execution examples for the Master Agent.
-
-These examples are illustrative and demonstrate expected behavior. They are not implementation-specific and should not be interpreted as executable workflows.
-
----
-
-# Example 1 - Basic Web Application Assessment
-
-## Scope
-
-```
-https://example.com
-```
-
-## Assessment Flow
-
-```
-Assessment Created
-
-↓
-
-Planning
-
-↓
-
-Recon
-
-↓
-
-Technology Detection
-
-↓
-
-Content Discovery
-
-↓
-
-Scanner Selection
-
-↓
-
-Parallel Scanning
-
-↓
-
-Evidence Correlation
-
-↓
-
-Report Generation
-```
-
-## Delegation
-
-| Capability | Assigned Agent |
-|------------|----------------|
-| DNS Enumeration | DNS Agent |
-| Port Discovery | Port Agent |
-| TLS Analysis | TLS Agent |
-| Technology Detection | Fingerprinting Agent |
-| Content Discovery | Content Discovery Agent |
+This document provides realistic, implementation-free examples of Master Agent
+orchestration. All examples target capabilities, bind to canonical schemas, and
+consume Findings, Evidence, and Risk by reference only.
 
 ---
 
-# Example 2 - Technology Driven Scanning
+# Example 1 — Capability-Oriented Delegation
 
-Recon discovers
+The Master Agent requires TLS posture analysis. It routes the required capability
+to the owning specialist tier agent, never to a tool.
 
-```
-React
-
-NGINX
-
-JWT Authentication
-```
-
-Master Agent schedules
-
-```
-React Agent
-
-↓
-
-JWT Agent
-
-↓
-
-Security Header Agent
-
-↓
-
-CSP Agent
-
-↓
-
-API Discovery Agent
+```yaml
+task:
+  id: task-web-4210
+  capability: web-security.tls-analysis
+  target: asset-host-2001
+  scope_ref: scope-eng-77
+  roe_ref: roe-eng-77
+  inputs:
+    observation_refs:
+      - observation-3300
 ```
 
-The Master Agent SHALL avoid scheduling unrelated scanners such as
+The Web Security Agent coordinates its tier and returns references only.
 
-- WordPress Agent
-- Drupal Agent
-- IIS Agent
+```yaml
+agent-response:
+  task_ref: task-web-4210
+  status: completed
+  observation_refs:
+    - observation-3401
+  evidence_refs:
+    - evidence-http-5501
+  finding_refs:
+    - finding-9007
+  next_recommended:
+    - web-security.security-headers
+```
+
+The Master Agent records `finding-9007` by reference and updates execution
+state. It does not read or modify the finding's contents.
 
 ---
 
-# Example 3 - Dynamic Replanning
+# Example 2 — Approval-Gated Active Validation
 
-Initial execution
+A candidate injection finding requires validation. The Master Agent gates it.
 
-```
-Recon
-
-↓
-
-Content Discovery
-```
-
-Content Discovery discovers
-
-```
-/graphql
+```yaml
+approval:
+  id: approval-6120
+  finding_ref: finding-9007
+  requested_action: active-testing.injection-validation
+  state: PENDING
 ```
 
-Master Agent immediately adds
+Only after the approval reaches `APPROVED` does the Master Agent delegate:
 
+```yaml
+task:
+  id: task-at-6121
+  capability: active-testing.injection-validation
+  target: asset-endpoint-4110
+  approval_ref: approval-6120
+  scope_ref: scope-eng-77
+  roe_ref: roe-eng-77
+  inputs:
+    finding_refs:
+      - finding-9007
 ```
-GraphQL Discovery Agent
 
-↓
-
-GraphQL Scanner
-
-↓
-
-Introspection Agent
-```
-
-The assessment SHALL continue without restarting the execution plan.
+If the approval is `REJECTED` or `EXPIRED`, the assessment stops at
+identification for that candidate and no validation is dispatched.
 
 ---
 
-# Example 4 - Parallel Execution
+# Example 3 — Reporting Pipeline Orchestration
 
-Independent work
+At the reporting phase the Master Agent invokes Reporting capabilities in order,
+consuming each output by reference.
 
-```
-DNS
-
-TLS
-
-Port Scan
-
-HTTP Fingerprinting
-```
-
-These tasks execute simultaneously.
-
-Dependent work
-
-```
-Technology Detection
-
-↓
-
-Technology-specific Scanners
+```yaml
+execution_plan:
+  phase: REPORTING
+  steps:
+    - capability: reporting.finding-correlation
+      inputs: { finding_refs: [finding-9007, finding-9011] }
+    - capability: reporting.risk-analysis
+      inputs: { correlated_ref: correlation-2200 }
+    - capability: reporting.report-generation
+      inputs: { analysis_ref: analysis-3300 }
+    - capability: reporting.evidence-bundle
+      inputs: { evidence_refs: [evidence-http-5501] }
 ```
 
-must wait until fingerprinting completes.
+The Master Agent performs no deduplication, correlation, scoring, or rendering;
+each is owned by the invoked Reporting capability. Canonical Risk remains owned
+by the Domain Security tiers.
 
 ---
 
-# Example 5 - Duplicate Finding Merge
+# Example 4 — Parallel Scheduling Under RoE
 
-Agent A reports
+Discovery produced independent capability opportunities. The Master Agent
+schedules non-conflicting work in parallel where RoE permits.
 
+```yaml
+execution_plan:
+  phase: CAPABILITY EXECUTION
+  parallel_groups:
+    - - capability: authentication.session-analysis
+        target: asset-web-application-1000
+      - capability: web-security.security-headers
+        target: asset-web-application-1000
+      - capability: api-security.rest
+        target: asset-api-1500
 ```
-Reflected XSS
 
-/login?q=
-```
-
-Agent B reports
-
-```
-Reflected Cross Site Scripting
-
-/login?q=
-```
-
-Expected behavior
-
-- One finding
-- Combined evidence
-- Confidence increased
-- Both agents credited
+Dependent work (for example, active testing) is not placed in a parallel group
+and is gated separately.
 
 ---
 
-# Example 6 - Conflicting Findings
+# Example 5 — Orchestration Error Handling
 
-JWT Agent
+A delegated task times out. The Master Agent applies its retry policy and
+continues independent work; it never fabricates results.
 
-```
-Algorithm Confusion Possible
-```
-
-Validation Agent
-
-```
-Unable to Reproduce
-```
-
-Master Agent
-
-- Preserves both findings
-- Lowers confidence
-- Requests additional review if justified
-- Does not discard evidence
-
----
-
-# Example 7 - Human Approval
-
-Scanner reports
-
-```
-Possible SQL Injection
+```yaml
+execution_state:
+  task_ref: task-cloud-7001
+  outcome: delegation-timeout
+  action: retry
+  independent_work_continued: true
 ```
 
-Confidence
-
-```
-HIGH
-```
-
-Master Agent
-
-```
-Pause
-
-↓
-
-Approval Request
-
-↓
-
-Approved
-
-↓
-
-Validation Agent
-
-↓
-
-VERIFIED
-```
-
-If approval is rejected
-
-```
-Finding remains
-
-UNVERIFIED
-```
-
----
-
-# Example 8 - Failure Recovery
-
-TLS Agent
-
-```
-Timeout
-```
-
-Master Agent
-
-```
-Retry
-
-↓
-
-Success
-```
-
-If retries exceed policy
-
-```
-Mark Failed
-
-↓
-
-Continue Remaining Assessment
-```
-
-The assessment SHALL not terminate unless the failure prevents further execution.
-
----
-
-# Example 9 - Scope Violation
-
-Content Discovery identifies
-
-```
-https://external.example.org
-```
-
-Rules of Engagement
-
-```
-Only example.com
-```
-
-Master Agent
-
-- Rejects the task
-- Records the attempted discovery
-- Does not delegate external scanning
-
----
-
-# Example 10 - Final Assessment
-
-Assessment completes with
-
-```
-Technologies
-
-- React
-- NGINX
-- JWT
-
-Attack Surface
-
-- 12 Endpoints
-- 3 APIs
-- 4 JavaScript Files
-
-Findings
-
-- 1 Critical
-- 2 High
-- 5 Medium
-- 3 Low
-
-Validated
-
-- 2
-
-Evidence
-
-- 147 Artifacts
-```
-
-The Master Agent requests report generation only after verifying
-
-- Assessment complete
-- Evidence complete
-- Confidence calculated
-- Findings merged
-- Approval workflow complete
-
----
-
-# Expected Characteristics
-
-A compliant Master Agent should
-
-- Delegate rather than execute
-- Adapt to new discoveries
-- Preserve all evidence
-- Respect dependencies
-- Avoid duplicate work
-- Require approval where necessary
-- Produce deterministic outputs
-- Maintain a complete audit trail
-
----
-
-# Common Anti-Patterns
-
-The following behaviors are considered incorrect
-
-❌ Running specialist tools directly
-
-❌ Reporting findings without evidence
-
-❌ Ignoring Rules of Engagement
-
-❌ Running validation without approval
-
-❌ Repeating completed tasks
-
-❌ Discarding conflicting evidence
-
-❌ Merging unrelated findings
-
-❌ Trusting tool output without verification
-
----
-
-# Success Criteria
-
-The examples in this document should be reproducible by any compliant implementation of the Master Agent, regardless of the underlying runtime, framework, or programming language.
+If retries are exhausted, the category becomes a recorded coverage gap and the
+reporting pipeline is informed by reference.

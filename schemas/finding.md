@@ -163,7 +163,7 @@ Confidence measures certainty.
 Confidence SHALL be calculated according to
 
 ```
-agents/master/confidence-model.md
+skills/core/confidence-model.md
 ```
 
 ---
