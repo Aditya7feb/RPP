@@ -503,7 +503,20 @@ strategies that SHALL be defined when that extension is introduced.
 
 # Phase 7
 
-Cloud Security
+Cloud Security Skills
+
+Status: Completed. The Cloud Security layer SHALL comprise the six implemented skills
+below. Each skill consumes per-provider shared clients that expose provider-native
+metadata as data, consults the Policy Engine before every target-facing action,
+interprets observed metadata without mutating the environment, and produces
+Observations, Evidence, Findings, and Risk classified with canonical weakness
+identifiers aligned to the applicable CIS Benchmark.
+
+The supporting shared clients — AWS Client, Azure Client, GCP Client, and Container
+Client — were introduced under the one-canonical-client-per-provider pattern and report
+provider-native metadata as data without interpretation.
+
+## Implemented
 
 AWS
 
@@ -517,17 +530,26 @@ Docker
 
 Terraform
 
-Helm
+## Scope Decisions
 
-Istio
+The following capabilities named in earlier planning were consolidated or deferred.
+These are scoping decisions only; no capability is lost.
 
-Ingress
+Helm, Istio, and Ingress SHALL be assessed by the Kubernetes skill. Their resources are
+Kubernetes workloads and configuration evaluated through the Kubernetes Client rather
+than as separate skills.
 
-Secrets
+IAM SHALL be assessed as an identity-and-access capability within each provider skill
+(AWS, Azure, GCP), which interprets provider-native identity metadata. It is not a
+separate skill.
 
-IAM
+Secrets SHALL be handled through the Secrets Client for credential resolution and
+assessed as a secret-handling capability within the provider, Kubernetes, Docker, and
+Terraform skills. It is not a separate skill.
 
-Metadata Services
+Metadata Services SHALL be assessed as an instance-metadata capability within the AWS,
+Azure, and GCP skills, which observe metadata-service reachability through their
+provider clients. It is not a separate skill.
 
 ---
 

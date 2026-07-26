@@ -146,6 +146,22 @@ packages:
       status: completed
       version: 1.0.0
 
+    aws-client:
+      status: completed
+      version: 1.0.0
+
+    azure-client:
+      status: completed
+      version: 1.0.0
+
+    gcp-client:
+      status: completed
+      version: 1.0.0
+
+    container-client:
+      status: completed
+      version: 1.0.0
+
 ################################################################################
 # Discovery Skills
 ################################################################################
@@ -333,22 +349,28 @@ packages:
   cloud:
 
     aws:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     azure:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     gcp:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     kubernetes:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     docker:
-      status: planned
+      status: completed
+      version: 1.0.0
 
     terraform:
-      status: planned
+      status: completed
+      version: 1.0.0
 
 ################################################################################
 # Reporting
@@ -570,6 +592,43 @@ dependencies:
     - rate-limiter
     - retry
 
+  aws-client:
+    - http-client
+    - authentication
+    - secrets-client
+    - policy-engine
+    - proxy
+    - rate-limiter
+    - retry
+
+  azure-client:
+    - http-client
+    - authentication
+    - secrets-client
+    - policy-engine
+    - proxy
+    - rate-limiter
+    - retry
+
+  gcp-client:
+    - http-client
+    - authentication
+    - secrets-client
+    - policy-engine
+    - proxy
+    - rate-limiter
+    - retry
+
+  container-client:
+    - http-client
+    - filesystem-client
+    - authentication
+    - secrets-client
+    - policy-engine
+    - proxy
+    - rate-limiter
+    - retry
+
   policy-engine: []
 
   dns-enumeration:
@@ -783,6 +842,42 @@ dependencies:
     - policy-engine
     - evidence
 
+  aws:
+    - aws-client
+    - cloud-storage-client
+    - secrets-client
+    - policy-engine
+    - evidence
+
+  azure:
+    - azure-client
+    - cloud-storage-client
+    - secrets-client
+    - policy-engine
+    - evidence
+
+  gcp:
+    - gcp-client
+    - cloud-storage-client
+    - secrets-client
+    - policy-engine
+    - evidence
+
+  kubernetes:
+    - kubernetes-client
+    - policy-engine
+    - evidence
+
+  docker:
+    - container-client
+    - policy-engine
+    - evidence
+
+  terraform:
+    - filesystem-client
+    - policy-engine
+    - evidence
+
 ################################################################################
 # Orchestration Relationships
 #
@@ -841,7 +936,7 @@ roadmap:
 
   phase-7:
     name: Cloud Security
-    status: planned
+    status: completed
 
   phase-8:
     name: Active Testing
@@ -865,7 +960,7 @@ roadmap:
 
 metrics:
 
-  packages_completed: 71
+  packages_completed: 81
   packages_planned: 0
 
   schemas_completed: 35
